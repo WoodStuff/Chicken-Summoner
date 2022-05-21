@@ -105,9 +105,7 @@ function init() {
 	}
 
 	gravitate();
-
-	player.x += player.vx / 150;
-	player.y += player.vy / 150;
+	move();
 
 	if (player.vx > 0 && l) friction = 0.9;
 	if (player.vx < 0 && r) friction = 0.9;
@@ -128,6 +126,49 @@ function init() {
 	requestAnimationFrame(init);
 
 
+	function move() {
+		let dir;
+		let temp = player.x;
+		let tempcollide = colliding();
+
+		player.x += player.vx / 150;
+		if (player.x > temp) dir = 'right';
+		if (player.x < temp) dir = 'left';
+		if (player.x == temp) dir = 'none';
+
+		let collide = colliding();
+		if (collide && !tempcollide) {
+			if (dir == 'right') {
+				player.x = collide.left;
+				player.vx = 0;
+			}
+			if (dir == 'left') {
+				player.x = collide.right + 1;
+				player.vx = 0;
+			}
+		}
+
+
+		temp = player.y;
+		tempcollide = colliding();
+
+		player.y += player.vy / 150;
+		if (player.y > temp) dir = 'down';
+		if (player.y < temp) dir = 'up';
+		if (player.y == temp) dir = 'none';
+
+		collide = colliding();
+		if (collide && !tempcollide) {
+			if (dir == 'down') {
+				player.y = collide.top;
+				player.vy = 0;
+			}
+			if (dir == 'up') {
+				player.y = collide.bottom + 1;
+				player.vy = 0;
+			}
+		}
+	}
 	function gravitate() {
 		player.vy += 0.5;
 	}
