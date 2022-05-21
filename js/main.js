@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
 var width = canvas.width;
 var height = canvas.height;
 
-let l, r; // abbreviations for left and right
+let l, r, jump; // abbreviations for left and right
 
 // every frame, runs 60 fps, for technical stuff
 function tick() {
@@ -46,6 +46,8 @@ function init() {
 	let spawnX = 20;
 	let spawnY = 20;
 
+	const hitboxes = [];
+
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
 		for (let x = 1; x < LEVELS[player.level].tiles[0].length + 1; x++) {
@@ -60,9 +62,26 @@ function init() {
 				tile.src = `media/images/${level[0].tile}.png`;
 				ctx.drawImage(tile, (x - 1) * xtopixel(tileSize), (y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
+				if (tileSolid(level[0].tile)) {
+					hitboxes.push({
+						tile: level[0].tile,
+						top: (y - 1) * tileSize * 20,
+						left: (x - 1) * tileSize * 20,
+						bottom: ((y - 1) * tileSize + tileSize) * 20,
+						right: ((x - 1) * tileSize + tileSize) * 20,
+					});
+				}
+
 				level.shift();
 			}
 		}
+	}
+	for (const value of hitboxes) {
+		// making sure there are no rounding errors
+		value.top = Math.round((value.top + Number.EPSILON) * 1000) / 1000;
+		value.left = Math.round((value.left + Number.EPSILON) * 1000) / 1000;
+		value.bottom = Math.round((value.bottom + Number.EPSILON) * 1000) / 1000;
+		value.right = Math.round((value.right + Number.EPSILON) * 1000) / 1000;
 	}
 	if (!player.spawned) {
 		player.x = spawnX;
@@ -80,6 +99,12 @@ function init() {
 
 	if (l) player.vx -= player.speed;
 	if (r) player.vx += player.speed;
+	if (jump) {
+		player.vy = -20;
+		jump = false;
+	}
+
+	gravitate();
 
 	player.x += player.vx / 150;
 	player.y += player.vy / 150;
@@ -98,22 +123,33 @@ function init() {
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
 	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
 
+	console.log(colliding(), hitboxes);
+
 	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize), xtopixel(tileSize));
 
 	requestAnimationFrame(init);
 
-	
+
 	function gravitate() {
-		
+		player.vy += 0.5;
+	}
+	function colliding() {
+		for (const box of hitboxes) {
+			if (player.x > box.left && player.x - 1 < box.right && player.y > box.top && player.y - 1 < box.bottom) return box;
+		}
+		return false;
 	}
 }
 
 function keyDownHandler(event) {
-	if(event.keyCode == 39) {
+	if (event.keyCode == 39) {
 		r = true;
 	}
-	else if(event.keyCode == 37) {
+	else if (event.keyCode == 37) {
 		l = true;
+	}
+	else if (event.keyCode == 32) {
+		jump = true;
 	}
 }
 
