@@ -5,7 +5,7 @@ const LEVELS = [
 			'         X',
 			'         X',
 			'X    XX  X',
-			'XX       X',
+			'XX   X   X',
 			'XXX O     ',
 			'XXXXXXXXXX',
 		],

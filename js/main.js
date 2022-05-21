@@ -175,8 +175,12 @@ function init() {
 				player.vy = 0;
 			}
 		}
-		if (!collide) {
-			player.canJump = false;
+		if (!collide && !timingOut) {
+			timingOut = true;
+			setTimeout(() => {
+				player.canJump = false;
+				timingOut = false;
+			}, 100);
 		}
 	}
 	function gravitate() {
