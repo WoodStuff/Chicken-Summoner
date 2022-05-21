@@ -8,7 +8,9 @@ const LEVELS = [
 			'          ',
 			' O        ',
 			'   XXXXXXX',
-		]
+		],
+		xScroll: false,
+		yScroll: false,
 	}
 ]
 
