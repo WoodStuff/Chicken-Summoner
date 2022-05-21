@@ -173,11 +173,9 @@ function init() {
 				player.vy = 0;
 			}
 		}
-		if (!collide && !timingOut) {
-			timingOut = true;
+		if (!collide) {
 			setTimeout(() => {
 				player.canJump = false;
-				timingOut = false;
 			}, 100);
 		}
 	}
