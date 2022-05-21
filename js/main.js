@@ -27,9 +27,10 @@ const player = {
 	subx: 0.5,
 	suby: 0.5,
 	level: 0,
+	spawned: false,
 }
 
-const tileSize = 0.06;
+const tileSize = 0.05;
 
 // every frame, for rendering stuff
 function init() {
@@ -41,10 +42,19 @@ function init() {
 
 	const level = parseLevel();
 
+	let spawnX = 1;
+	let spawnY = 1;
+
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
 		for (let x = 1; x < LEVELS[player.level].tiles[0].length + 1; x++) {
 			if (level[0].x == x && level[0].y == y) {
+				if (level[0].tile == 'spawn') {
+					spawnX = level[0].x;
+					spawnY = level[0].y;
+					level.shift();
+					continue;
+				}
 				const tile = new Image();
 				tile.src = `media/images/${level[0].tile}.png`;
 				ctx.drawImage(tile, (x - 1) * xtopixel(tileSize), (y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
@@ -53,17 +63,20 @@ function init() {
 			}
 		}
 	}
+	if (!player.spawned) {
+		player.x = spawnX;
+		player.y = spawnY;
+		player.spawned = true;
+	}
 
 
 	// adding the man
-	/*const man = new Image();
+	const man = new Image();
 	man.src = 'media/images/man.png';
-	if (l) player.x -= 0.005;
-	if (r) player.x += 0.005;*/
+	if (l) player.x -= 0.066;
+	if (r) player.x += 0.066;
 
-	// rendering the man
-	// edit this part when editing y spawn point                   ----
-	//ctx.drawImage(man, xtopixel(player.x - (tileSize / 2)), (ytopixel(0.68) - xtopixel(tileSize / 2)), xtopixel(tileSize), xtopixel(tileSize));
+	ctx.drawImage(man, (player.x - 1) * xtopixel(tileSize), (player.y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 	requestAnimationFrame(init);
 }
