@@ -77,18 +77,22 @@ function init() {
 	// adding the man
 	const man = new Image();
 	man.src = 'media/images/man.png';
-	player.x += player.vx / 150;
-	player.y += player.vy / 150;
-
-	if (player.vx > 0 && l) friction = 0.95;
-	if (player.vx < 0 && r) friction = 0.95;
-	if (!l && !r) friction = 0.933;
-	if (player.vx > -velThreshold && player.vx < velThreshold && !l && !r) friction = 0.875;
-
-	player.vx *= friction;
 
 	if (l) player.vx -= player.speed;
 	if (r) player.vx += player.speed;
+
+	player.x += player.vx / 150;
+	player.y += player.vy / 150;
+
+	if (player.vx > 0 && l) friction = 0.9;
+	if (player.vx < 0 && r) friction = 0.9;
+	if (!l && !r) friction = 0.91;
+	if (player.vx > -velThreshold && player.vx < velThreshold && !l && !r) friction = 0.825;
+	if (player.vx > -velThreshold && l) friction += 0.1;
+	if (player.vx < velThreshold && r) friction += 0.1;
+	friction -= Math.abs(player.vx) / 2000;
+
+	player.vx *= friction;
 
 	// making sure there are no rounding errors
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
