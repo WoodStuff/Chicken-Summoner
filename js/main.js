@@ -70,10 +70,23 @@ document.addEventListener('keyup', keyUpHandler, false);
 
 function parseLevel() {
 	const tiles = [];
+	let x = 0;
+	let y = 0;
+
 	for (const row of LEVELS[player.level].tiles) {
-		const split = row.split();
+		y++;
+		const split = row.split('');
 		for (const tile of split) {
-			
+			x++;
+			if (TILES[tile] == 'empty') continue;
+			tiles.push({
+				x: x,
+				y: y,
+				tile: TILES[tile],
+			})
 		}
+		x = 0;
 	}
+
+	return tiles;
 }
