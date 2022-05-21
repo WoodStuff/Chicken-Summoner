@@ -14,7 +14,7 @@ const LEVELS = [
 
 const TILES = {
 	' ': 'empty',
-	'X': 'tile',
+	'X': 'block',
 	'O': 'spawn',
 	'>': 'exit',
 }

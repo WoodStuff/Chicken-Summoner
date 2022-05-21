@@ -34,16 +34,31 @@ function init() {
 	ctx.fillStyle = '#5050A0';
 	ctx.fillRect(0, 0, xtopixel(1), ytopixel(1));
 
-	parseLevel();
+	const level = parseLevel();
+
+	// render the level
+	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
+		for (let x = 1; x < LEVELS[player.level].tiles[0].length + 1; x++) {
+			if (level[0].x == x && level[0].y == y) {
+				const tile = new Image();
+				tile.src = `media/images/${level[0].tile}.png`;
+				ctx.drawImage(tile, x * xtopixel(0.075), y * xtopixel(0.075), xtopixel(0.075), xtopixel(0.075));
+
+				level.shift();
+			}
+		}
+	}
+
+
 	// adding the man
-	const man = new Image();
+	/*const man = new Image();
 	man.src = 'media/images/man.png';
 	if (l) player.x -= 0.005;
-	if (r) player.x += 0.005;
+	if (r) player.x += 0.005;*/
 
 	// rendering the man
 	// edit this part when editing y spawn point                   ----
-	ctx.drawImage(man, xtopixel(player.x - (0.075 / 2)), (ytopixel(0.68) - xtopixel(0.075 / 2)), xtopixel(0.075), xtopixel(0.075));
+	//ctx.drawImage(man, xtopixel(player.x - (0.075 / 2)), (ytopixel(0.68) - xtopixel(0.075 / 2)), xtopixel(0.075), xtopixel(0.075));
 
 	requestAnimationFrame(init);
 }
