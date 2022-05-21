@@ -5,5 +5,9 @@
 var canvas = document.getElementById('game');
 var game = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function tick() {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+
+setInterval(tick, 10);
