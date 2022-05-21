@@ -71,6 +71,9 @@ document.addEventListener('keyup', keyUpHandler, false);
 function parseLevel() {
 	const tiles = [];
 	for (const row of LEVELS[player.level].tiles) {
-		console.log(row);
+		const split = row.split();
+		for (const tile of split) {
+			
+		}
 	}
 }
