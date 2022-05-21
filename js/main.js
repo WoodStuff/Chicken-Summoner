@@ -15,8 +15,8 @@ function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
 
-	if (width > height) width = canvas.width = height * 16/9;
-	else height = canvas.height = width * 9/16;
+	if (width > height * (16/9)) width = canvas.width = height * (16/9);
+	else height = canvas.height = width * (9/16);
 }
 
 setInterval(tick, 100/6);
@@ -29,7 +29,7 @@ const player = {
 	level: 0,
 }
 
-const tileSize = 0.05;
+const tileSize = 0.06;
 
 // every frame, for rendering stuff
 function init() {
