@@ -14,15 +14,16 @@ let l, r; // abbreviations for left and right
 function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
-
-	if (l) player.x -= 0.005;
-	if (r) player.x += 0.005;
 }
 
 setInterval(tick, 100/6);
 
 const player = {
 	x: 0.5,
+	y: 0.8,
+	subx: 0.5,
+	suby: 0.5,
+	level: 0,
 }
 
 // every frame, for rendering stuff
@@ -33,10 +34,15 @@ function init() {
 	ctx.fillStyle = '#5050A0';
 	ctx.fillRect(0, 0, xtopixel(1), ytopixel(1));
 
+	parseLevel();
+	// adding the man
 	const man = new Image();
 	man.src = 'media/images/man.png';
+	if (l) player.x -= 0.005;
+	if (r) player.x += 0.005;
 
-	// edit this parts when editing y spawn point                  ---
+	// rendering the man
+	// edit this part when editing y spawn point                   ----
 	ctx.drawImage(man, xtopixel(player.x - (0.075 / 2)), (ytopixel(0.68) - xtopixel(0.075 / 2)), xtopixel(0.075), xtopixel(0.075));
 
 	requestAnimationFrame(init);
@@ -61,3 +67,10 @@ function keyUpHandler(event) {
 }
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
+
+function parseLevel() {
+	const tiles = [];
+	for (const row of LEVELS[player.level].tiles) {
+		console.log(row);
+	}
+}
