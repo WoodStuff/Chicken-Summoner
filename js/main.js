@@ -14,6 +14,9 @@ let l, r; // abbreviations for left and right
 function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
+
+	if (width > height) width = canvas.width = height * 16/9;
+	else height = canvas.height = width * 9/16;
 }
 
 setInterval(tick, 100/6);
@@ -25,6 +28,8 @@ const player = {
 	suby: 0.5,
 	level: 0,
 }
+
+const tileSize = 0.05;
 
 // every frame, for rendering stuff
 function init() {
@@ -42,7 +47,7 @@ function init() {
 			if (level[0].x == x && level[0].y == y) {
 				const tile = new Image();
 				tile.src = `media/images/${level[0].tile}.png`;
-				ctx.drawImage(tile, (x - 1) * xtopixel(0.075), (y - 1) * xtopixel(0.075), xtopixel(0.075), xtopixel(0.075));
+				ctx.drawImage(tile, (x - 1) * xtopixel(tileSize), (y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 				level.shift();
 			}
@@ -58,7 +63,7 @@ function init() {
 
 	// rendering the man
 	// edit this part when editing y spawn point                   ----
-	//ctx.drawImage(man, xtopixel(player.x - (0.075 / 2)), (ytopixel(0.68) - xtopixel(0.075 / 2)), xtopixel(0.075), xtopixel(0.075));
+	//ctx.drawImage(man, xtopixel(player.x - (tileSize / 2)), (ytopixel(0.68) - xtopixel(tileSize / 2)), xtopixel(tileSize), xtopixel(tileSize));
 
 	requestAnimationFrame(init);
 }
