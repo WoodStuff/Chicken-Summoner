@@ -86,10 +86,10 @@ function init() {
 
 	if (player.vx > 0 && l) friction = 0.9;
 	if (player.vx < 0 && r) friction = 0.9;
-	if (!l && !r) friction = 0.91;
-	if (player.vx > -velThreshold && player.vx < velThreshold && !l && !r) friction = 0.825;
-	if (player.vx > -velThreshold && l) friction += 0.1;
-	if (player.vx < velThreshold && r) friction += 0.1;
+	if (!l && !r) friction = 0.875;
+	if (player.vx > -velThreshold && player.vx < velThreshold && !l && !r) friction = 0.81;
+	if (player.vx > -velThreshold && player.vx < 0 && l && !r) friction += 0.2;
+	if (player.vx < velThreshold && player.vx > 0 && r && !l) friction += 0.2;
 	friction -= Math.abs(player.vx) / 2000;
 
 	player.vx *= friction;
