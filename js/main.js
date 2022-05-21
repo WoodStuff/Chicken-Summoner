@@ -161,8 +161,6 @@ function init() {
 		if (player.y < temp) dir = 'up';
 		if (player.y == temp) dir = 'none';
 
-		let timingOut = false;
-
 		collide = colliding();
 		if (collide && !tempcollide) {
 			if (dir == 'down') {
