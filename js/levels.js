@@ -2,11 +2,11 @@ const LEVELS = [
 	{
 		level: 0,
 		tiles: [
-			'          ',
-			'          ',
-			'          ',
-			'          ',
-			' O        ',
+			'X         ',
+			'X    XX   ',
+			'      X   ',
+			'      X   ',
+			' O   XX   ',
 			'XXXXXXXXXX',
 		]
 	}

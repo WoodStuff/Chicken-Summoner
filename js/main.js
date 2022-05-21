@@ -42,7 +42,7 @@ function init() {
 			if (level[0].x == x && level[0].y == y) {
 				const tile = new Image();
 				tile.src = `media/images/${level[0].tile}.png`;
-				ctx.drawImage(tile, x * xtopixel(0.075), y * xtopixel(0.075), xtopixel(0.075), xtopixel(0.075));
+				ctx.drawImage(tile, (x - 1) * xtopixel(0.075), (y - 1) * xtopixel(0.075), xtopixel(0.075), xtopixel(0.075));
 
 				level.shift();
 			}
