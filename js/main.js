@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
 var width = canvas.width;
 var height = canvas.height;
 
-let l, r, jump; // abbreviations for left and right
+let l, r, jump, reset; // abbreviations for left and right
 
 // every frame, runs 60 fps, for technical stuff
 function tick() {
@@ -121,7 +121,7 @@ function init() {
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
 	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
 
-	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize), xtopixel(tileSize));
+	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize * 0.75), xtopixel(tileSize * 0.75));
 
 	requestAnimationFrame(init);
 
@@ -139,7 +139,7 @@ function init() {
 		let collide = colliding();
 		if (collide && !tempcollide) {
 			if (dir == 'right') {
-				player.x = collide.left;
+				player.x = collide.left + 0.25;
 				player.vx = 0;
 			}
 			if (dir == 'left') {
@@ -160,7 +160,7 @@ function init() {
 		collide = colliding();
 		if (collide && !tempcollide) {
 			if (dir == 'down') {
-				player.y = collide.top;
+				player.y = collide.top + 0.25;
 				player.vy = 0;
 			}
 			if (dir == 'up') {
@@ -174,7 +174,7 @@ function init() {
 	}
 	function colliding() {
 		for (const box of hitboxes) {
-			if (player.x > box.left && player.x - 1 < box.right && player.y > box.top && player.y - 1 < box.bottom) return box;
+			if (player.x > box.left + 0.25 && player.x - 1 < box.right && player.y > box.top + 0.25 && player.y - 1 < box.bottom) return box;
 		}
 		return false;
 	}
@@ -189,6 +189,9 @@ function keyDownHandler(event) {
 	}
 	else if (event.keyCode == 32) {
 		jump = true;
+	}
+	else if (event.keyCode == 82) {
+		reset = true;
 	}
 }
 
