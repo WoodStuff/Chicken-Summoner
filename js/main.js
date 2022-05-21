@@ -161,6 +161,8 @@ function init() {
 		if (player.y < temp) dir = 'up';
 		if (player.y == temp) dir = 'none';
 
+		let timingOut = false;
+
 		collide = colliding();
 		if (collide && !tempcollide) {
 			if (dir == 'down') {
@@ -172,6 +174,9 @@ function init() {
 				player.y = collide.bottom + 1;
 				player.vy = 0;
 			}
+		}
+		if (!collide) {
+			player.canJump = false;
 		}
 	}
 	function gravitate() {
