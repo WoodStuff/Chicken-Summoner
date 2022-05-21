@@ -2,6 +2,3 @@ body { /* makes the margin 0 so there are no white borders */
 	margin: 0;
 	overflow: hidden;
 }
-#game {
-	background: red;
-}

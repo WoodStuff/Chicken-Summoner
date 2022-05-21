@@ -40,24 +40,7 @@ function weightedChoose(object) {
 
 	return randomArray(array);
 }
-function convertPos(value, method) {
-	const width = canvas.width;
-	const height = canvas.height;
-
-	switch (method) {
-		case enums.convertPos.xtoperc:
-			return value / width;
-
-		case enums.convertPos.xtopixel:
-			return value * width;
-
-		case enums.convertPos.ytoperc:
-			return value / height;
-
-		case enums.convertPos.ytopixel:
-			return value * height;
-	
-		default:
-			break;
-	}
-}
+const xtoperc  = v => v / width;
+const ytoperc  = v => v / height;
+const xtopixel = v => v * width;
+const ytopixel = v => v * height;
