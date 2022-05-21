@@ -29,6 +29,7 @@ const player = {
 	speed: 0.5,
 	level: 0,
 	spawned: false,
+	canJump: false,
 }
 
 const tileSize = 0.05;
@@ -100,8 +101,11 @@ function init() {
 	if (l) player.vx -= player.speed;
 	if (r) player.vx += player.speed;
 	if (jump) {
-		player.vy = -20;
 		jump = false;
+		if (player.canJump) {
+			player.vy = -20;
+			player.canJump = false;
+		}
 	}
 
 	gravitate();
@@ -162,6 +166,7 @@ function init() {
 			if (dir == 'down') {
 				player.y = collide.top + 0.25;
 				player.vy = 0;
+				player.canJump = true;
 			}
 			if (dir == 'up') {
 				player.y = collide.bottom + 1;
