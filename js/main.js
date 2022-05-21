@@ -24,7 +24,9 @@ setInterval(tick, 100/6);
 const player = {
 	x: 2,
 	y: 3,
-	speed: 1/15,
+	vx: 0,
+	vy: 0,
+	speed: 0.5,
 	level: 0,
 	spawned: false,
 }
@@ -69,11 +71,24 @@ function init() {
 	}
 
 
+	let friction = 0.99;
+	let velThreshold = 0.8;
+
 	// adding the man
 	const man = new Image();
 	man.src = 'media/images/man.png';
-	if (l) player.x -= player.speed;
-	if (r) player.x += player.speed;
+	player.x += player.vx / 150;
+	player.y += player.vy / 150;
+
+	if (player.vx > 0 && l) friction = 0.95;
+	if (player.vx < 0 && r) friction = 0.95;
+	if (!l && !r) friction = 0.933;
+	if (player.vx > -velThreshold && player.vx < velThreshold && !l && !r) friction = 0.875;
+
+	player.vx *= friction;
+
+	if (l) player.vx -= player.speed;
+	if (r) player.vx += player.speed;
 
 	// making sure there are no rounding errors
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
@@ -82,6 +97,10 @@ function init() {
 	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize), xtopixel(tileSize));
 
 	requestAnimationFrame(init);
+
+	function gravitate() {
+		
+	}
 }
 
 function keyDownHandler(event) {
