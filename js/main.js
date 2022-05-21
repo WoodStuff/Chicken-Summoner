@@ -22,10 +22,9 @@ function tick() {
 setInterval(tick, 100/6);
 
 const player = {
-	x: 0.5,
-	y: 0.8,
-	subx: 0.5,
-	suby: 0.5,
+	x: 2,
+	y: 3,
+	speed: 1/15,
 	level: 0,
 	spawned: false,
 }
@@ -42,8 +41,8 @@ function init() {
 
 	const level = parseLevel();
 
-	let spawnX = 1;
-	let spawnY = 1;
+	let spawnX = 20;
+	let spawnY = 20;
 
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
@@ -73,10 +72,14 @@ function init() {
 	// adding the man
 	const man = new Image();
 	man.src = 'media/images/man.png';
-	if (l) player.x -= 0.066;
-	if (r) player.x += 0.066;
+	if (l) player.x -= player.speed;
+	if (r) player.x += player.speed;
 
-	ctx.drawImage(man, (player.x - 1) * xtopixel(tileSize), (player.y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
+	// making sure there are no rounding errors
+	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
+	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
+
+	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize), xtopixel(tileSize));
 
 	requestAnimationFrame(init);
 }
