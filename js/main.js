@@ -121,6 +121,14 @@ function init() {
 
 	player.vx *= friction;
 
+	if (reset) {
+		player.x = spawnX;
+		player.y = spawnY;
+		player.vx = 0;
+		player.vy = 0;
+		reset = false;
+	}
+
 	// making sure there are no rounding errors
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
 	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
