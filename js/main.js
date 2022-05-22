@@ -226,10 +226,10 @@ function init() {
 }
 
 function keyDownHandler(event) {
-	if (event.keyCode == 39) {
+	if (event.keyCode == 39 || event.keyCode == 68) {
 		r = true;
 	}
-	else if (event.keyCode == 37) {
+	else if (event.keyCode == 37 || event.keyCode == 65) {
 		l = true;
 	}
 	else if (event.keyCode == 32) {
@@ -241,10 +241,10 @@ function keyDownHandler(event) {
 }
 
 function keyUpHandler(event) {
-	if (event.keyCode == 39) {
+	if (event.keyCode == 39 || event.keyCode == 68) {
 		r = false;
 	}
-	else if (event.keyCode == 37) {
+	else if (event.keyCode == 37 || event.keyCode == 65) {
 		l = false;
 	}
 }
