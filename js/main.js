@@ -15,8 +15,8 @@ function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
 
-	if (width > height * (16/9)) width = canvas.width = height * (16/9);
-	else height = canvas.height = width * (9/16);
+	if (width > height * 2) width = canvas.width = height * 2;
+	else height = canvas.height = width /2;
 }
 
 setInterval(tick, 100/6);
@@ -63,6 +63,17 @@ function init() {
 			Xscroll = LEVELS[player.level].tiles[0].length - 1 / tileSize;
 		}
 	}
+	/*if (LEVELS[player.level].xScroll) {
+		if (player.x > 0.5 / tileSize && player.x < LEVELS[player.level].tiles.length - 0.5 / tileSize) {
+			Xscroll = player.x - 0.5 / tileSize;
+		}
+		else if (player.x < 0.5 / tileSize) {
+			Xscroll = 0;
+		}
+		else {
+			Xscroll = LEVELS[player.level].tiles.length - 1 / tileSize;
+		}
+	}*/
 
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
