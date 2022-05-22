@@ -73,10 +73,10 @@ function init() {
 		}
 	}
 	if (LEVELS[player.level].yScroll) {
-		if (player.y > 0.25 / tileSize && player.y < LEVELS[player.level].tiles.length - 0.25 / tileSize) {
+		if (player.y >= 0.25 / tileSize && player.y <= LEVELS[player.level].tiles.length - 0.25 / tileSize) {
 			Yscroll = player.y - 0.25 / tileSize;
 		}
-		else if (player.y < 0.25 / tileSize) {
+		else if (player.y <= 0.25 / tileSize) {
 			Yscroll = 0;
 		}
 		else {
