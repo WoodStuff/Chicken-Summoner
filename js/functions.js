@@ -45,5 +45,5 @@ const ytoperc  = v => v / height;
 const xtopixel = v => v * width;
 const ytopixel = v => v * height;
 function tileSolid(tile) {
-	return ['block', 'spike'].includes(tile);
+	return ['block', 'spike', 'exit'].includes(tile);
 }

@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
 var width = canvas.width;
 var height = canvas.height;
 
-let l, r, jump, reset; // abbreviations for left and right
+let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and right
 
 // every frame, runs 60 fps, for technical stuff
 function tick() {
@@ -98,10 +98,13 @@ function init() {
 				}
 				ctx.drawImage(images[level[0].tile], (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
+				let tDecr = 0;
+				if (level[0].tile == 'spike') tDecr = 0.1;
+
 				if (tileSolid(level[0].tile)) {
 					hitboxes.push({
 						tile: level[0].tile,
-						top: (y - 1) * tileSize * 20,
+						top: (y - 1 + tDecr) * tileSize * 20,
 						left: (x - 1) * tileSize * 20,
 						bottom: ((y - 1) * tileSize + tileSize) * 20,
 						right: ((x - 1) * tileSize + tileSize) * 20,
@@ -119,6 +122,7 @@ function init() {
 		value.bottom = Math.round((value.bottom + Number.EPSILON) * 1000) / 1000;
 		value.right = Math.round((value.right + Number.EPSILON) * 1000) / 1000;
 	}
+	console.log(hitboxes);
 	if (!player.spawned) {
 		player.x = spawnX + 0.125;
 		player.y = spawnY + 0.125;
@@ -139,9 +143,13 @@ function init() {
 		}
 	}
 
+	if (nextLevelPending) {
+		reset();
+		nextLevelPending = false;
+	}
+
 	gravitate();
 	move();
-	console.log(player.y);
 
 	if (player.vx > 0 && l) friction = 0.9;
 	if (player.vx < 0 && r) friction = 0.9;
@@ -153,9 +161,9 @@ function init() {
 
 	player.vx *= friction;
 
-	if (reset) {
-		die();
-		reset = false;
+	if (resetPending) {
+		reset();
+		resetPending = false;
 	}
 
 	// making sure there are no rounding errors
@@ -229,7 +237,7 @@ function init() {
 		}
 		return false;
 	}
-	function die() {
+	function reset() {
 		player.x = spawnX + 0.125;
 		player.y = spawnY + 0.125;
 		player.vx = 0;
@@ -237,8 +245,12 @@ function init() {
 	}
 	function specialCollide(prop) { // returns true if no hitbox
 		if (prop.tile == 'spike') {
-			die();
+			reset();
 			return true;
+		}
+		if (prop.tile == 'exit') {
+			player.level++;
+			nextLevelPending = true;
 		}
 	}
 }
@@ -254,7 +266,7 @@ function keyDownHandler(event) {
 		jump = true;
 	}
 	else if (event.keyCode == 82) {
-		reset = true;
+		resetPending = true;
 	}
 }
 
