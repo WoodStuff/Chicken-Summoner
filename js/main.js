@@ -211,9 +211,7 @@ function init() {
 			}
 		}
 		if (!collide) {
-			setTimeout(() => {
-				player.canJump = false;
-			}, 100);
+			player.canJump = false;
 		}
 	}
 	function gravitate() {
