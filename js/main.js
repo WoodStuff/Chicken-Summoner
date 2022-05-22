@@ -34,6 +34,15 @@ const player = {
 
 const tileSize = 0.05;
 
+const images = {
+	man: new Image(),
+	block: new Image(),
+	exit: new Image(),
+}
+images.man.src = `media/images/man.png`;
+images.block.src = `media/images/block.png`;
+images.exit.src = `media/images/exit.png`;
+
 // every frame, for rendering stuff
 function init() {
 	ctx.clearRect(0, 0, xtopixel(1), ytopixel(1));
@@ -85,9 +94,7 @@ function init() {
 					level.shift();
 					continue;
 				}
-				const tile = new Image();
-				tile.src = `media/images/${level[0].tile}.png`;
-				ctx.drawImage(tile, (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
+				ctx.drawImage(images[level[0].tile], (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 				if (tileSolid(level[0].tile)) {
 					hitboxes.push({
@@ -119,10 +126,6 @@ function init() {
 
 	let friction = 0.99;
 	let velThreshold = 0.8;
-
-	// adding the man
-	const man = new Image();
-	man.src = 'media/images/man.png';
 
 	if (l) player.vx -= player.speed;
 	if (r) player.vx += player.speed;
@@ -159,7 +162,7 @@ function init() {
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
 	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
 
-	ctx.drawImage(man, ((player.x - 1 - Xscroll) * xtopixel(tileSize)), ((player.y - 1 - Yscroll) * xtopixel(tileSize)), xtopixel(tileSize * 0.75), xtopixel(tileSize * 0.75));
+	ctx.drawImage(images.man, ((player.x - 1 - Xscroll) * xtopixel(tileSize)), ((player.y - 1 - Yscroll) * xtopixel(tileSize)), xtopixel(tileSize * 0.75), xtopixel(tileSize * 0.75));
 
 	requestAnimationFrame(init);
 
