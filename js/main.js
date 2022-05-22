@@ -38,10 +38,12 @@ const images = {
 	man: new Image(),
 	block: new Image(),
 	exit: new Image(),
+	spike: new Image(),
 }
 images.man.src = `media/images/man.png`;
 images.block.src = `media/images/block.png`;
 images.exit.src = `media/images/exit.png`;
+images.spike.src = `media/images/spike.png`;
 
 // every frame, for rendering stuff
 function init() {
@@ -62,10 +64,10 @@ function init() {
 	const hitboxes = [];
 
 	if (LEVELS[player.level].xScroll) {
-		if (player.x > 0.5 / tileSize && player.x < LEVELS[player.level].tiles[0].length - 0.5 / tileSize) {
+		if (player.x >= 0.5 / tileSize && player.x <= LEVELS[player.level].tiles[0].length - 0.5 / tileSize) {
 			Xscroll = player.x - 0.5 / tileSize;
 		}
-		else if (player.x < 0.5 / tileSize) {
+		else if (player.x <= 0.5 / tileSize) {
 			Xscroll = 0;
 		}
 		else {
@@ -139,6 +141,7 @@ function init() {
 
 	gravitate();
 	move();
+	console.log(player.y);
 
 	if (player.vx > 0 && l) friction = 0.9;
 	if (player.vx < 0 && r) friction = 0.9;
@@ -151,10 +154,7 @@ function init() {
 	player.vx *= friction;
 
 	if (reset) {
-		player.x = spawnX + 0.125;
-		player.y = spawnY + 0.125;
-		player.vx = 0;
-		player.vy = 0;
+		die();
 		reset = false;
 	}
 
@@ -178,18 +178,21 @@ function init() {
 		if (player.x == temp) dir = 'none';
 
 		let collide = colliding();
-		if (collide && !tempcollide) {
-			if (dir == 'right') {
-				player.x = collide.left + 0.25;
-				player.vx = 0;
-			}
-			if (dir == 'left') {
-				player.x = collide.right + 1;
-				player.vx = 0;
+		if (collide) {
+			let sp = specialCollide(collide);
+			if (!tempcollide && !sp) {
+				if (dir == 'right') {
+					player.x = collide.left + 0.25;
+					player.vx = 0;
+				}
+				if (dir == 'left') {
+					player.x = collide.right + 1;
+					player.vx = 0;
+				}
 			}
 		}
 
-
+		
 		temp = player.y;
 		tempcollide = colliding();
 
@@ -199,15 +202,18 @@ function init() {
 		if (player.y == temp) dir = 'none';
 
 		collide = colliding();
-		if (collide && !tempcollide) {
-			if (dir == 'down') {
-				player.y = collide.top + 0.25;
-				player.vy = 0;
-				player.canJump = true;
-			}
-			if (dir == 'up') {
-				player.y = collide.bottom + 1;
-				player.vy = 0;
+		if (collide) {
+			sp = specialCollide(collide);
+			if (!tempcollide && !sp) {
+				if (dir == 'down') {
+					player.y = collide.top + 0.25;
+					player.vy = 0;
+					player.canJump = true;
+				}
+				if (dir == 'up') {
+					player.y = collide.bottom + 1;
+					player.vy = 0;
+				}
 			}
 		}
 		if (!collide) {
@@ -222,6 +228,18 @@ function init() {
 			if (player.x > box.left + 0.25 && player.x - 1 < box.right && player.y > box.top + 0.25 && player.y - 1 < box.bottom) return box;
 		}
 		return false;
+	}
+	function die() {
+		player.x = spawnX + 0.125;
+		player.y = spawnY + 0.125;
+		player.vx = 0;
+		player.vy = 0;
+	}
+	function specialCollide(prop) { // returns true if no hitbox
+		if (prop.tile == 'spike') {
+			die();
+			return true;
+		}
 	}
 }
 
