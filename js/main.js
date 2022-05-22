@@ -85,8 +85,8 @@ function init() {
 		value.right = Math.round((value.right + Number.EPSILON) * 1000) / 1000;
 	}
 	if (!player.spawned) {
-		player.x = spawnX;
-		player.y = spawnY;
+		player.x = spawnX + 0.125;
+		player.y = spawnY + 0.125;
 		player.spawned = true;
 	}
 
@@ -122,8 +122,8 @@ function init() {
 	player.vx *= friction;
 
 	if (reset) {
-		player.x = spawnX;
-		player.y = spawnY;
+		player.x = spawnX + 0.125;
+		player.y = spawnY + 0.125;
 		player.vx = 0;
 		player.vy = 0;
 		reset = false;
