@@ -47,7 +47,22 @@ function init() {
 	let spawnX = 20;
 	let spawnY = 20;
 
+	let Xscroll = 0;
+	let Yscroll = 0;
+
 	const hitboxes = [];
+
+	if (LEVELS[player.level].xScroll) {
+		if (player.x > 0.5 / tileSize && player.x < LEVELS[player.level].tiles[0].length - 0.5 / tileSize) {
+			Xscroll = player.x - 0.5 / tileSize;
+		}
+		else if (player.x < 0.5 / tileSize) {
+			Xscroll = 0;
+		}
+		else {
+			Xscroll = LEVELS[player.level].tiles[0].length - 1 / tileSize;
+		}
+	}
 
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
@@ -61,7 +76,7 @@ function init() {
 				}
 				const tile = new Image();
 				tile.src = `media/images/${level[0].tile}.png`;
-				ctx.drawImage(tile, (x - 1) * xtopixel(tileSize), (y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
+				ctx.drawImage(tile, (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 				if (tileSolid(level[0].tile)) {
 					hitboxes.push({
@@ -133,7 +148,7 @@ function init() {
 	player.x = Math.round((player.x + Number.EPSILON) * 1000) / 1000;
 	player.y = Math.round((player.y + Number.EPSILON) * 1000) / 1000;
 
-	ctx.drawImage(man, ((player.x - 1) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize * 0.75), xtopixel(tileSize * 0.75));
+	ctx.drawImage(man, ((player.x - 1 - Xscroll) * xtopixel(tileSize)), ((player.y - 1) * xtopixel(tileSize)), xtopixel(tileSize * 0.75), xtopixel(tileSize * 0.75));
 
 	requestAnimationFrame(init);
 
