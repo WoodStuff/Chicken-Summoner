@@ -307,7 +307,7 @@ function parseLevel() {
 		const split = row.split('');
 		for (const tile of split) {
 			x++;
-			if (TILES[tile] == 'empty') continue;
+			if (TILES[tile] == 'empty' || TILES[tile] == undefined) continue;
 			tiles.push({
 				x: x,
 				y: y,
