@@ -47,3 +47,10 @@ const ytopixel = v => v * height;
 function tileSolid(tile) {
 	return ['block', 'spike', 'exit'].includes(tile);
 }
+function getWidth(level) {
+	let length = 0;
+	for (const row of level) {
+		if (row.length > length) length = row.length;
+	}
+	return length;
+}

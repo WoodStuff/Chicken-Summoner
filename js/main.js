@@ -93,7 +93,7 @@ function init() {
 
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
-		for (let x = 1; x < LEVELS[player.level].tiles[0].length + 1; x++) {
+		for (let x = 1; x < getWidth(LEVELS[player.level].tiles) + 1; x++) {
 			if (level[0] == undefined) {
 				level[0] = {
 					x: x,
