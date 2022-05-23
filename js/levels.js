@@ -38,7 +38,7 @@ const LEVELS = [
 			'X   XXXXX^^^^^^^XXXXXXXX',
 			'X       XXXXXXXXX      X',
 			'X                      X',
-			'XXXXXXXXXXXXXXXXX      X',
+			'XXXXXXXXXXXXXXXXX    > X',
 			'XXXXXXXXXXXXXXXXXXXXXXXX',
 			'XXXXXXXXXXXXXXXXXXXXXXXX',
 		],

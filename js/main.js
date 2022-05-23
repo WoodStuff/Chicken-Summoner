@@ -122,7 +122,6 @@ function init() {
 		value.bottom = Math.round((value.bottom + Number.EPSILON) * 1000) / 1000;
 		value.right = Math.round((value.right + Number.EPSILON) * 1000) / 1000;
 	}
-	console.log(hitboxes);
 	if (!player.spawned) {
 		player.x = spawnX + 0.125;
 		player.y = spawnY + 0.125;
@@ -248,7 +247,7 @@ function init() {
 			reset();
 			return true;
 		}
-		if (prop.tile == 'exit') {
+		if (prop.tile == 'exit' && player.level != LEVELS.length - 1) {
 			player.level++;
 			nextLevelPending = true;
 		}
@@ -267,6 +266,11 @@ function keyDownHandler(event) {
 	}
 	else if (event.keyCode == 82) {
 		resetPending = true;
+	}
+	else if (event.keyCode == 76) {
+		const editor = document.getElementById('leveleditor');
+		if (editor.style.display == 'block') editor.style.display = 'none';
+		else editor.style.display = 'block';
 	}
 }
 

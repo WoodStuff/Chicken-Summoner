@@ -11,8 +11,38 @@
 	<body onload="init();">
 		<canvas id="game" width="1600" height="900">unfortunately your browser must support canvas element else this will not work (the current situation)</canvas>
 
+		<div id="leveleditor" style="display:none;">
+			<h1>Level Editor</h1>
+			<p>Note: It is recommended that you enclose your levels! Otherwise, players will be able to go out of bounds.</p>
+			<p>Make a level here:</p>
+			<table>
+				<tr>
+					<td><textarea name="levelcode" id="levelcode" cols="40" rows="20" style="font-family:monospace;"></textarea></td>
+					<td>
+						<h2>Examples</h2>
+						<button onclick="levelPreset(0);">Simple empty enclosed level</button><br>
+						<button onclick="levelPreset(1);">Enclosed level with platforms</button><br>
+						<button onclick="levelPreset(2);">Level with spikes</button><br>
+					</td>
+				</tr>
+				<tr><td><button onclick="loadLevel();">Load Level</button></td></tr>
+				<tr>
+					<td>
+						<p>Symbols:</p>
+						<ul>
+							<li>Spawn: O (capital)</li>
+							<li>Block: X (capital)</li>
+							<li>Goal: ></li>
+							<li>Spike: ^</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+
 		<script src="js/functions.js" defer></script>
 		<script src="js/main.js" defer></script>
 		<script src="js/levels.js" defer></script>
+		<script src="js/leveleditor.js"></script>
 	</body>
 </html>
