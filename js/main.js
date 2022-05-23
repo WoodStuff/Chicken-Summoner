@@ -136,7 +136,7 @@ function init() {
 	}
 	if (!player.spawned) {
 		player.x = spawnX + 0.125;
-		player.y = spawnY + 0.125;
+		player.y = spawnY + 0.25;
 		player.spawned = true;
 	}
 
