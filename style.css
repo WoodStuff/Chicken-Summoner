@@ -23,6 +23,7 @@ div#leveleditor {
 	z-index: 1;
 	position: absolute;
 	padding: 8px;
+	overflow: auto;
 }
 h1 {
 	font-size: 4em;
