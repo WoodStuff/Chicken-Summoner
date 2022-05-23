@@ -94,6 +94,13 @@ function init() {
 	// render the level
 	for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
 		for (let x = 1; x < LEVELS[player.level].tiles[0].length + 1; x++) {
+			if (level[0] == undefined) {
+				level[0] = {
+					x: x,
+					y: y,
+					tile: 'block',
+				}
+			}
 			if (level[0].x == x && level[0].y == y) {
 				if (level[0].tile == 'spawn') {
 					spawnX = level[0].x;
