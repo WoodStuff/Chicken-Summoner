@@ -29,3 +29,7 @@ h1 {
 	font-size: 4em;
 	margin: 0;
 }
+textarea#levelcode {
+	white-space: pre;
+	overflow-wrap: normal;
+}
