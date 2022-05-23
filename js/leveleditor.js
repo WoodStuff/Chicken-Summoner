@@ -36,6 +36,7 @@ X             XX       X
 X     XXX              X
 X  O                   X
 XXXXXXXXXXXXXXXXXXXXXXXX`
+			break;
 
 		case 2:
 			levelcode.value =
@@ -56,6 +57,7 @@ X  O      XXXXXXXXX    X
 XXXXXX                 X
 XXXXXX^^^^^^^^^^^^^^^^^X
 XXXXXXXXXXXXXXXXXXXXXXXX`
+			break;
 	
 		default:
 			break;
