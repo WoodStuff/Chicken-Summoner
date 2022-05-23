@@ -64,25 +64,29 @@ function init() {
 	const hitboxes = [];
 
 	if (LEVELS[player.level].xScroll) {
-		if (player.x >= 0.5 / tileSize && player.x <= LEVELS[player.level].tiles[0].length - 0.5 / tileSize) {
-			Xscroll = player.x - 0.5 / tileSize;
-		}
-		else if (player.x <= 0.5 / tileSize) {
-			Xscroll = 0;
-		}
-		else {
-			Xscroll = LEVELS[player.level].tiles[0].length - 1 / tileSize;
+		if (LEVELS[player.level].tiles[0].length > 1 / tileSize) {
+			if (player.x >= 0.5 / tileSize && player.x <= LEVELS[player.level].tiles[0].length - 0.5 / tileSize) {
+				Xscroll = player.x - 0.5 / tileSize;
+			}
+			else if (player.x <= 0.5 / tileSize) {
+				Xscroll = 0;
+			}
+			else {
+				Xscroll = LEVELS[player.level].tiles[0].length - 1 / tileSize;
+			}
 		}
 	}
 	if (LEVELS[player.level].yScroll) {
-		if (player.y >= 0.25 / tileSize && player.y <= LEVELS[player.level].tiles.length - 0.25 / tileSize) {
-			Yscroll = player.y - 0.25 / tileSize;
-		}
-		else if (player.y <= 0.25 / tileSize) {
-			Yscroll = 0;
-		}
-		else {
-			Yscroll = LEVELS[player.level].tiles.length - 0.5 / tileSize;
+		if (LEVELS[player.level].tiles.length > 0.5 / tileSize) {
+			if (player.y >= 0.25 / tileSize && player.y <= LEVELS[player.level].tiles.length - 0.25 / tileSize) {
+				Yscroll = player.y - 0.25 / tileSize;
+			}
+			else if (player.y <= 0.25 / tileSize) {
+				Yscroll = 0;
+			}
+			else {
+				Yscroll = LEVELS[player.level].tiles.length - 0.5 / tileSize;
+			}
 		}
 	}
 
