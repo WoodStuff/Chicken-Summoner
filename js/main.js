@@ -16,7 +16,7 @@ function tick() {
 	height = canvas.height = window.innerHeight;
 
 	if (width > height * 2) width = canvas.width = height * 2;
-	else height = canvas.height = width /2;
+	else height = canvas.height = width / 2;
 }
 
 setInterval(tick, 100/6);
