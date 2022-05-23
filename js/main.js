@@ -30,6 +30,7 @@ const player = {
 	level: 0,
 	spawned: false,
 	canJump: false,
+	hasArtifact: false,
 }
 
 const tileSize = 0.05;
