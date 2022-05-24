@@ -28,9 +28,9 @@ const player = {
 	vy: 0,
 	speed: 0.5,
 	level: 0,
+	checkpoint: 0,
 	spawned: false,
 	canJump: false,
-	hasArtifact: false,
 }
 
 const tileSize = 0.05;
@@ -40,11 +40,15 @@ const images = {
 	block: new Image(),
 	exit: new Image(),
 	spike: new Image(),
+	checkpoint: new Image(),
+	checkpointactive: new Image(),
 }
 images.man.src = `media/images/man.png`;
 images.block.src = `media/images/block.png`;
 images.exit.src = `media/images/exit.png`;
 images.spike.src = `media/images/spike.png`;
+images.checkpoint.src = `media/images/checkpoint.png`;
+images.checkpointactive.src = `media/images/checkpointactive.png`;
 
 // every frame, for rendering stuff
 function init() {
@@ -56,11 +60,13 @@ function init() {
 
 	const level = parseLevel();
 
-	let spawnX = 20;
-	let spawnY = 20;
+	let spawnX = 4;
+	let spawnY = 4;
 
 	let Xscroll = 0;
 	let Yscroll = 0;
+
+	let checkpoints = [{ x: 4, y: 4 }];
 
 	const hitboxes = [];
 
@@ -105,22 +111,45 @@ function init() {
 				if (level[0].tile == 'spawn') {
 					spawnX = level[0].x;
 					spawnY = level[0].y;
+					checkpoints[0].x = spawnX;
+					checkpoints[0].y = spawnY;
 					level.shift();
 					continue;
 				}
-				ctx.drawImage(images[level[0].tile], (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
+				if (level[0].tile == 'checkpoint') {
+					checkpoints.push({
+						x: x,
+						y: y,
+					});
+				}
+				let texture = images[level[0].tile];
+				if (level[0].tile == 'checkpoint' && player.checkpoint == checkpoints.length - 1) texture = images.checkpointactive;
+
+				ctx.drawImage(texture, (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 				let tDecr = 0;
-				if (level[0].tile == 'spike') tDecr = 0.1;
+				if (level[0].tile == 'spike') tDecr = 0.15;
 
-				if (tileSolid(level[0].tile)) {
-					hitboxes.push({
-						tile: level[0].tile,
-						top: (y - 1 + tDecr) * tileSize * 20,
-						left: (x - 1) * tileSize * 20,
-						bottom: ((y - 1) * tileSize + tileSize) * 20,
-						right: ((x - 1) * tileSize + tileSize) * 20,
-					});
+				if (hasHitbox(level[0].tile)) {
+					if (level[0].tile == 'checkpoint') {
+						hitboxes.push({
+							tile: level[0].tile,
+							top: (y - 1 + tDecr) * tileSize * 20,
+							left: (x - 1) * tileSize * 20,
+							bottom: ((y - 1) * tileSize + tileSize) * 20,
+							right: ((x - 1) * tileSize + tileSize) * 20,
+							checkpoint: checkpoints.length - 1,
+						});
+					}
+					else {
+						hitboxes.push({
+							tile: level[0].tile,
+							top: (y - 1 + tDecr) * tileSize * 20,
+							left: (x - 1) * tileSize * 20,
+							bottom: ((y - 1) * tileSize + tileSize) * 20,
+							right: ((x - 1) * tileSize + tileSize) * 20,
+						});
+					}
 				}
 
 				level.shift();
@@ -134,9 +163,10 @@ function init() {
 		value.bottom = Math.round((value.bottom + Number.EPSILON) * 1000) / 1000;
 		value.right = Math.round((value.right + Number.EPSILON) * 1000) / 1000;
 	}
+
 	if (!player.spawned) {
-		player.x = spawnX + 0.125;
-		player.y = spawnY + 0.25;
+		player.x = checkpoints[player.checkpoint].x + 0.125;
+		player.y = checkpoints[player.checkpoint].y + 0.25;
 		player.spawned = true;
 	}
 
@@ -199,7 +229,7 @@ function init() {
 		let collide = colliding();
 		if (collide) {
 			let sp = specialCollide(collide);
-			if (!tempcollide && !sp) {
+			if (!sp) {
 				if (dir == 'right') {
 					player.x = collide.left + 0.25;
 					player.vx = 0;
@@ -223,7 +253,7 @@ function init() {
 		collide = colliding();
 		if (collide) {
 			sp = specialCollide(collide);
-			if (!tempcollide && !sp) {
+			if (!sp) {
 				if (dir == 'down') {
 					player.y = collide.top + 0.25;
 					player.vy = 0;
@@ -243,14 +273,22 @@ function init() {
 		player.vy += 0.5;
 	}
 	function colliding() {
+		let sfl = undefined; // save for later
 		for (const box of hitboxes) {
-			if (player.x > box.left + 0.25 && player.x - 1 < box.right && player.y > box.top + 0.25 && player.y - 1 < box.bottom) return box;
+			if (player.x > box.left + 0.25 && player.x - 1 < box.right && player.y > box.top + 0.25 && player.y - 1 < box.bottom) {
+				if (hitboxNoSolid(box.tile)) {
+					sfl = box;
+					continue;
+				}
+				return box;
+			}
 		}
+		if (sfl) return sfl;
 		return false;
 	}
 	function reset() {
-		player.x = spawnX + 0.125;
-		player.y = spawnY + 0.125;
+		player.x = checkpoints[player.checkpoint].x + 0.125;
+		player.y = checkpoints[player.checkpoint].y + 0.25;
 		player.vx = 0;
 		player.vy = 0;
 	}
@@ -260,8 +298,13 @@ function init() {
 			return true;
 		}
 		if (prop.tile == 'exit' && player.level != LEVELS.length - 1) {
+			player.checkpoint = 0;
 			player.level++;
 			nextLevelPending = true;
+		}
+		if (prop.tile == 'checkpoint') {
+			player.checkpoint = prop.checkpoint;
+			return true;
 		}
 	}
 }
@@ -273,7 +316,7 @@ function keyDownHandler(event) {
 	else if (event.keyCode == 37 || event.keyCode == 65) {
 		l = true;
 	}
-	else if (event.keyCode == 32) {
+	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) {
 		jump = true;
 	}
 	else if (event.keyCode == 82) {
