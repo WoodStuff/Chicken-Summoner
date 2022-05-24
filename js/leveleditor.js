@@ -58,6 +58,29 @@ XXXXXX                 X
 XXXXXX^^^^^^^^^^^^^^^^^X
 XXXXXXXXXXXXXXXXXXXXXXXX`
 			break;
+
+		case 3:
+			levelcode.value =
+`XXXXXXXXXXXXXXXXXXXXXXXX
+X                      X
+X                      X
+X      ^^^^^ >         X
+X   XXXXXXXXXXX        X
+X                      X
+XX                     X
+X^C                    X
+XXXX       ^^          X
+XXXX^    ^^XX^^  C     X
+XXXXXXXXXXXXXXXXXXX    X
+XXXXXXXXXXXXXXXXXXX    X
+X                     XX
+X                     XX
+X              ^^    XXX
+X              XX    XXX
+X        XXXX  XX  XXXXX
+X O  ^^^^XXXX^^XX^^XXXXX
+XXXXXXXXXXXXXXXXXXXXXXXX`
+			break;
 	
 		default:
 			break;
