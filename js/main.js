@@ -128,7 +128,7 @@ function init() {
 				ctx.drawImage(texture, (x - 1 - Xscroll) * xtopixel(tileSize), (y - 1 - Yscroll) * xtopixel(tileSize), xtopixel(tileSize), xtopixel(tileSize));
 
 				let tDecr = 0;
-				if (level[0].tile == 'spike') tDecr = 0.1;
+				if (level[0].tile == 'spike') tDecr = 0.15;
 
 				if (hasHitbox(level[0].tile)) {
 					if (level[0].tile == 'checkpoint') {
