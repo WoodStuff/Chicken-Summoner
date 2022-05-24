@@ -316,7 +316,7 @@ function keyDownHandler(event) {
 	else if (event.keyCode == 37 || event.keyCode == 65) {
 		l = true;
 	}
-	else if (event.keyCode == 32) {
+	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) {
 		jump = true;
 	}
 	else if (event.keyCode == 82) {
