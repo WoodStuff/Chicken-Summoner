@@ -44,8 +44,11 @@ const xtoperc  = v => v / width;
 const ytoperc  = v => v / height;
 const xtopixel = v => v * width;
 const ytopixel = v => v * height;
-function tileSolid(tile) {
-	return ['block', 'spike', 'exit'].includes(tile);
+function hasHitbox(tile) {
+	return ['block', 'spike', 'exit', 'checkpoint'].includes(tile);
+}
+function hitboxNoSolid(tile) {
+	return ['spike', 'checkpoint'].includes(tile);
 }
 function getWidth(level) {
 	let length = 0;
