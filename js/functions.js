@@ -48,7 +48,7 @@ function hasHitbox(tile) {
 	return ['block', 'spike', 'exit', 'checkpoint'].includes(tile);
 }
 function hitboxNoSolid(tile) {
-	return ['spike', 'checkpoint'].includes(tile);
+	return ['checkpoint'].includes(tile);
 }
 function getWidth(level) {
 	let length = 0;
