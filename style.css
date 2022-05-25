@@ -49,3 +49,12 @@ textarea#levelcode {
 	font-size: 8vh;
 	text-align: right;
 }
+
+.time {
+	position: absolute;
+	top: 80%;
+	left: 1%;
+	opacity: 0.8;
+	font-size: 8vh;
+	text-align: right;
+}

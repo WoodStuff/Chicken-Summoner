@@ -8,6 +8,10 @@ const ctx = canvas.getContext('2d');
 var width = canvas.width;
 var height = canvas.height;
 
+// Timer. Use this for speedrunning! ~ Quitin
+timerfull = 0;
+timer = Math.floor(timerfull*100)/100;
+
 let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and right
 
 // every frame, runs 60 fps, for technical stuff
@@ -20,6 +24,11 @@ function tick() {
 
 	// This sends index.html the required data to display the player's current level. ~ Quitin
 	document.getElementById('level').innerHTML = player.level + 1 // + 1 added to show Level 1 instead of 0 ~ Quitin
+	// Same as above, but with the timer. ~ Quitin
+	document.getElementById('timer').innerHTML = timer
+
+	timerfull = timerfull + 1/60;
+	timer = Math.floor(timerfull*100)/100;
 }
 
 setInterval(tick, 100/6);
