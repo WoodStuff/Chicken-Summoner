@@ -215,6 +215,9 @@ function init() {
 	player.vx *= friction;
 
 	if (resetPending) {
+		if (player.checkpoint == 0) {
+			timerfull = 0;
+		}
 		reset();
 		resetPending = false;
 	}
@@ -313,6 +316,7 @@ function init() {
 			player.checkpoint = 0;
 			player.level++;
 			nextLevelPending = true;
+			timerfull = 0;
 		}
 		if (prop.tile == 'checkpoint') {
 			player.checkpoint = prop.checkpoint;
