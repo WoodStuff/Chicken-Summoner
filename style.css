@@ -14,6 +14,7 @@ canvas#game {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	z-index: -1;
 }
 
 div#leveleditor {
@@ -32,4 +33,19 @@ h1 {
 textarea#levelcode {
 	white-space: pre;
 	overflow-wrap: normal;
+}
+
+.logo {
+	width: 25%;
+	height: auto;
+	opacity: 0.25;
+}
+
+.level {
+	position: absolute;
+	top: 80%;
+	right: 1%;
+	opacity: 0.8;
+	font-size: 8vh;
+	text-align: right;
 }

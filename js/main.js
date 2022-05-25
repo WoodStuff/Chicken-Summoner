@@ -17,6 +17,9 @@ function tick() {
 
 	if (width > height * 2) width = canvas.width = height * 2;
 	else height = canvas.height = width / 2;
+
+	// This sends index.html the required data to display the player's current level. ~ Quitin
+	document.getElementById('level').innerHTML = player.level + 1 // + 1 added to show Level 1 instead of 0 ~ Quitin
 }
 
 setInterval(tick, 100/6);

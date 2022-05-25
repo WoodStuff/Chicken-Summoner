@@ -8,9 +8,12 @@
 
 		<link rel="stylesheet" href="style.css">
 	</head>
+	
 	<body onload="init();">
+		<img class='logo' src="media/images/logo.png"></img> <!-- The game's logo in the top-left. ~ Quitin -->
+		<p class='level' style="font-family:Arial;color:white;">Level: <span id="level"></span></p> <!-- This displays the player's current level in the bottom-right. ~ Quitin -->
+		
 		<canvas id="game" width="1600" height="900">unfortunately your browser must support canvas element else this will not work (the current situation)</canvas>
-
 		<div id="leveleditor" style="display:none;">
 			<h1>Level Editor</h1>
 			<p>Note: It is recommended that you enclose your levels! Otherwise, players will be able to go out of bounds.</p>
@@ -42,7 +45,6 @@
 				</tr>
 			</table>
 		</div>
-
 		<script src="js/functions.js" defer></script>
 		<script src="js/main.js" defer></script>
 		<script src="js/levels.js" defer></script>
