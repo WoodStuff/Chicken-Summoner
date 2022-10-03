@@ -338,6 +338,7 @@ function keyDownHandler(event) {
 	else if (event.keyCode == 82) {
 		resetPending = true;
 	}
+	
 	else if (event.keyCode == 76) {
 		const editor = document.getElementById('leveleditor');
 		if (editor.style.display == 'block') editor.style.display = 'none';
