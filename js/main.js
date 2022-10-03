@@ -67,7 +67,7 @@ function init() {
 	ctx.clearRect(0, 0, xtopixel(1), ytopixel(1));
 
 	// background
-	ctx.fillStyle = '#485263';
+	ctx.fillStyle = '#486362';
 	ctx.fillRect(0, 0, xtopixel(1), ytopixel(1));
 
 	const level = parseLevel();
@@ -338,7 +338,7 @@ function keyDownHandler(event) {
 	else if (event.keyCode == 82) {
 		resetPending = true;
 	}
-	
+
 	else if (event.keyCode == 76) {
 		const editor = document.getElementById('leveleditor');
 		if (editor.style.display == 'block') editor.style.display = 'none';
