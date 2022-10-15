@@ -14,16 +14,14 @@ timer = Math.floor(timerfull*100)/100;
 
 let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and right
 
-window.onresize = () => {
+// every frame, runs 60 fps, for technical stuff
+function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
 
 	if (width > height * 2) width = canvas.width = height * 2;
 	else height = canvas.height = width / 2;
-}
 
-// every frame, runs 60 fps, for technical stuff
-function tick() {
 	// This sends index.html the required data to display the player's current level. ~ Quitin
 	document.getElementById('level').innerHTML = player.level + 1 // + 1 added to show Level 1 instead of 0 ~ Quitin
 	// Same as above, but with the timer. ~ Quitin
