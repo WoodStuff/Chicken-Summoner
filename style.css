@@ -17,6 +17,11 @@ canvas#game {
 	z-index: -1;
 }
 
+@font-face {
+	font-family: stormtiles;
+	src: url('stormtiles.ttf') format('truetype');
+}
+
 div#leveleditor {
 	width: 100vw;
 	height: 100vh;

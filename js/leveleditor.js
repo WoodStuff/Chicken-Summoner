@@ -16,7 +16,7 @@ X                      X
 X                      X
 X                      X
 X                      X
-X  O                   X
+X  P                   X
 XXXXXXXXXXXXXXXXXXXXXXXX`
 			break;
 
@@ -25,7 +25,7 @@ XXXXXXXXXXXXXXXXXXXXXXXX`
 `XXXXXXXXXXXXXXXXXXXXXXXX
 X                      X
 X                      X
-X  >                   X
+X  E                   X
 XXXXXXXXX              X
 X                      X
 X            XXX       X
@@ -34,7 +34,7 @@ X                     XX
 X                      X
 X             XX       X
 X     XXX              X
-X  O                   X
+X  P                   X
 XXXXXXXXXXXXXXXXXXXXXXXX`
 			break;
 
@@ -48,14 +48,14 @@ X                      X
 X                 X    X
 X                      X
 X                    XXX
-X >  ^^^^^^^^^^^^      X
+X E  AAAAAAAAAAAA      X
 XXXXXXXXXXXXXXXXXXX    X
 X                      X
 X                    XXX
-X           ^^^^       X
-X  O      XXXXXXXXX    X
+X           AAAA       X
+X  P      XXXXXXXXX    X
 XXXXXX                 X
-XXXXXX^^^^^^^^^^^^^^^^^X
+XXXXXXAAAAAAAAAAAAAAAAAX
 XXXXXXXXXXXXXXXXXXXXXXXX`
 			break;
 
@@ -64,21 +64,21 @@ XXXXXXXXXXXXXXXXXXXXXXXX`
 `XXXXXXXXXXXXXXXXXXXXXXXX
 X                      X
 X                      X
-X      ^^^^^ >         X
+X      AAAAA E         X
 X   XXXXXXXXXXX        X
 X                      X
 XX                     X
-X^C                    X
-XXXX       ^^          X
-XXXX^    ^^XX^^  C     X
+XAC                    X
+XXXX       AA          X
+XXXXA    AAXXAA  C     X
 XXXXXXXXXXXXXXXXXXX    X
 XXXXXXXXXXXXXXXXXXX    X
 X                     XX
 X                     XX
-X              ^^    XXX
+X              AA    XXX
 X              XX    XXX
 X        XXXX  XX  XXXXX
-X O  ^^^^XXXX^^XX^^XXXXX
+X P  AAAAXXXXAAXXAAXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXX`
 			break;
 	
