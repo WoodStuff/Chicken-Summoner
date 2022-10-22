@@ -15,7 +15,7 @@ timer = Math.floor(timerfull*100)/100;
 let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and right
 
 function setup() {
-	tick(); // so the game won't randomly be bigger for a frame 
+	tick(); // so the game won't randomly be bigger for a frame
 	setInterval(tick, 100/6);
 	init();
 }
