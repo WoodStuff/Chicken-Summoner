@@ -20,16 +20,52 @@ function setup() {
 	init();
 }
 
+const trim = { x: 0, y: 0 }
+
 // every frame, runs 60 fps, for technical stuff
 function tick() {
 	width = canvas.width = window.innerWidth;
 	height = canvas.height = window.innerHeight;
 
-	if (width > height * 2) width = canvas.width = height * 2;
-	else height = canvas.height = width / 2;
+	if (width > height * 2) {
+		trim.x = (width - height * 2) / 2;
+		trim.y = 0;
+		width = canvas.width = height * 2;
+	}
+	else {
+		trim.x = 0;
+		trim.y = (height - width / 2) / 2;
+		height = canvas.height = width / 2;
+	}
 
 	timerfull = timerfull + 1/60;
 	timer = Math.floor(timerfull*100)/100;
+}
+
+const mouse = {
+	x: 0,
+	y: 0,
+}
+canvas.addEventListener('mousemove', mousepos, false);
+function mousepos(e) {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+	if (clickables.length == 0) return;
+
+	hovered = '';
+
+	clickables.forEach(c => {
+		if (mouse.x > xtopixel(c.x) + trim.x // left hitbox
+		&&  mouse.x < xtopixel(c.x + c.width) + trim.x // right hitbox
+		&&  mouse.y > ytopixel(c.y) + trim.y // top hitbox
+		&&  mouse.y < ytopixel(c.y + c.height) + trim.y // bottom hitbox
+		) {
+			hovered = c.name;
+		}
+	})
+
+	if (hovered == '' || !clicks.get(hovered).cursor) canvas.style.cursor = 'default';
+	else canvas.style.cursor = 'pointer';
 }
 
 const player = {
@@ -46,6 +82,10 @@ const player = {
 
 const tileSize = 0.05;
 
+/**
+ * Creates an image element from the URL.
+ * @param {URL} src The source of the image, from the root of the game. 
+ */
 function newImage(src) {
     var img = new Image();
     img.src = src;
@@ -56,6 +96,13 @@ const images = {
 	// MAIN
 	man: newImage(`media/tiles/man.png`),
 	logo: newImage(`media/logo.png`),
+
+	// MENU
+	levels_button: newImage(`media/levels.png`),
+	leveleditor_button: newImage(`media/leveleditor.png`),
+	statistics_button: newImage(`media/statistics.png`),
+	missions_button: newImage(`media/missions.png`),
+	options_button: newImage(`media/options.png`),
 
 	// BACKGROUND
 	menu: newImage(`media/menu.png`),
@@ -69,12 +116,27 @@ const images = {
 }
 
 /**
+ * Current menu state.
  */
 const state = {
 	playing: false,
 	tab: 'menu',
 	subtab: 'main',
 }
+
+/**
+ * @type {{
+ * x: number,
+ * y: number,
+ * width: number,
+ * height: number,
+ * name: string,
+ * click: Function,
+ * cursor: boolean
+ * }[]}
+ */
+const clickables = [];
+let hovered = '';
 
 function keyDownHandler(event) {
 	if (event.keyCode == 39 || event.keyCode == 68) {

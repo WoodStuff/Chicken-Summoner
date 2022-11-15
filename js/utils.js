@@ -72,3 +72,32 @@ function getWidth(level) {
 	}
 	return length;
 }
+
+const clicks = {
+	add(name, x, y, width, height, func, cursor = true) {
+		if (this.get(name)) return false;
+		name ||= clickables.length;
+		clickables.push({
+			x: x,
+			y: y,
+			width: width,
+			height: height,
+			name: name,
+			click: func,
+			cursor: cursor,
+		})
+		return true;
+	},
+	remove(name) {
+		const index = clickables.findIndex(c => c.name == name);
+		if (index == -1) return false;
+		clickables.splice(index, 1);
+		return true;
+	},
+	get(name) {
+		return clickables.find(c => c.name == name);
+	},
+	clear() {
+		clickables.splice(0, 0);
+	}
+}

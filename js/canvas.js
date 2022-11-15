@@ -8,8 +8,18 @@ function init() {
 	requestAnimationFrame(init);
 
 	function menu() {
+		clicks.clear();
 		ctx.drawImage(images.menu, 0, 0, xtopixel(1), ytopixel(1));
 		ctx.drawImage(images.logo, xtopixel(0.125), ytopixel(0.075), xtopixel(0.75), xtopixel(0.75) / (774/77));
+
+		const spacing = 0.12;
+		const size = 0.0472081218;                                             // put in the width of the image here ↓↓↓
+		ctx.drawImage(images.levels_button,      xtopixel(0.0625), ytopixel(0.3 + 0 * spacing), xtopixel(size) / (93/394), xtopixel(size));
+		ctx.drawImage(images.leveleditor_button, xtopixel(0.0625), ytopixel(0.3 + 1 * spacing), xtopixel(size) / (93/747), xtopixel(size));
+		ctx.drawImage(images.statistics_button,  xtopixel(0.0625), ytopixel(0.3 + 2 * spacing), xtopixel(size) / (93/624), xtopixel(size));
+		ctx.drawImage(images.missions_button,    xtopixel(0.0625), ytopixel(0.3 + 3 * spacing), xtopixel(size) / (93/541), xtopixel(size));
+		ctx.drawImage(images.options_button,     xtopixel(0.0625), ytopixel(0.3 + 4 * spacing), xtopixel(size) / (93/511), xtopixel(size * 116/93));
+		clicks.add('levels', 0.0625, 0.3 + 0 * spacing, size / (93/394), size * 2, () => {});
 	}
 
 	function play() {
