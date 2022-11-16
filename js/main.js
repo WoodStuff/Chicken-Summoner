@@ -46,7 +46,7 @@ const mouse = {
 	x: 0,
 	y: 0,
 }
-canvas.addEventListener('mousemove', mousepos, false);
+canvas.addEventListener('mousemove', mousepos);
 function mousepos(e) {
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
@@ -66,6 +66,13 @@ function mousepos(e) {
 
 	if (hovered == '' || !clicks.get(hovered).cursor) canvas.style.cursor = 'default';
 	else canvas.style.cursor = 'pointer';
+}
+
+canvas.addEventListener('mouseup', mouseclick);
+function mouseclick(e) {
+	if (hovered == '') return false;
+	console.log(`Clicked button: ${hovered}`);
+	clicks.get(hovered).click();
 }
 
 const player = {
