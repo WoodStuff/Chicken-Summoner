@@ -98,11 +98,16 @@ const images = {
 	logo: newImage(`media/logo.png`),
 
 	// MENU
-	levels_button: newImage(`media/levels.png`),
-	leveleditor_button: newImage(`media/leveleditor.png`),
-	statistics_button: newImage(`media/statistics.png`),
-	missions_button: newImage(`media/missions.png`),
-	options_button: newImage(`media/options.png`),
+	levels_button: newImage(`media/menu/levels.png`),
+	levels_bg: newImage(`media/menu/bg_levels.png`),
+	leveleditor_button: newImage(`media/menu/leveleditor.png`),
+	leveleditor_bg: newImage(`media/menu/bg_leveleditor.png`),
+	statistics_button: newImage(`media/menu/statistics.png`),
+	statistics_bg: newImage(`media/menu/bg_statistics.png`),
+	missions_button: newImage(`media/menu/missions.png`),
+	missions_bg: newImage(`media/menu/bg_missions.png`),
+	options_button: newImage(`media/menu/options.png`),
+	options_bg: newImage(`media/menu/bg_options.png`),
 
 	// BACKGROUND
 	menu: newImage(`media/menu.png`),
@@ -147,6 +152,7 @@ function keyDownHandler(event) {
 	}
 	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) {
 		jump = true;
+		state.playing = true;
 	}
 	else if (event.keyCode == 82) {
 		resetPending = true;

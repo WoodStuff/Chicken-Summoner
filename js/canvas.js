@@ -14,12 +14,23 @@ function init() {
 
 		const spacing = 0.12;
 		const size = 0.0472081218;                                             // put in the width of the image here ↓↓↓
+		var a = images.levels_button;
+		a.style.opacity = 0.5;
 		ctx.drawImage(images.levels_button,      xtopixel(0.0625), ytopixel(0.3 + 0 * spacing), xtopixel(size) / (93/394), xtopixel(size));
 		ctx.drawImage(images.leveleditor_button, xtopixel(0.0625), ytopixel(0.3 + 1 * spacing), xtopixel(size) / (93/747), xtopixel(size));
 		ctx.drawImage(images.statistics_button,  xtopixel(0.0625), ytopixel(0.3 + 2 * spacing), xtopixel(size) / (93/624), xtopixel(size));
 		ctx.drawImage(images.missions_button,    xtopixel(0.0625), ytopixel(0.3 + 3 * spacing), xtopixel(size) / (93/541), xtopixel(size));
 		ctx.drawImage(images.options_button,     xtopixel(0.0625), ytopixel(0.3 + 4 * spacing), xtopixel(size) / (93/511), xtopixel(size * 116/93));
-		clicks.add('levels', 0.0625, 0.3 + 0 * spacing, size / (93/394), size * 2, () => {});
+		ctx.drawImage(images.levels_bg,          xtopixel(0.0625), ytopixel(0.3 + 0 * spacing), xtopixel(size) / (93/394), xtopixel(size));
+		ctx.drawImage(images.leveleditor_bg,     xtopixel(0.0625), ytopixel(0.3 + 1 * spacing), xtopixel(size) / (93/747), xtopixel(size));
+		ctx.drawImage(images.statistics_bg,      xtopixel(0.0625), ytopixel(0.3 + 2 * spacing), xtopixel(size) / (93/624), xtopixel(size));
+		ctx.drawImage(images.missions_bg,        xtopixel(0.0625), ytopixel(0.3 + 3 * spacing), xtopixel(size) / (93/541), xtopixel(size));
+		ctx.drawImage(images.options_bg,         xtopixel(0.0625), ytopixel(0.3 + 4 * spacing), xtopixel(size) / (93/511), xtopixel(size));
+		clicks.add('levels',      0.0625, 0.3 + 0 * spacing, size / (93/394), size * 2, () => {});
+		clicks.add('leveleditor', 0.0625, 0.3 + 1 * spacing, size / (93/747), size * 2, () => {});
+		clicks.add('statistics',  0.0625, 0.3 + 2 * spacing, size / (93/624), size * 2, () => {});
+		clicks.add('missions',    0.0625, 0.3 + 3 * spacing, size / (93/541), size * 2, () => {});
+		clicks.add('options',     0.0625, 0.3 + 4 * spacing, size / (93/511), size * 2, () => {});
 	}
 
 	function play() {
