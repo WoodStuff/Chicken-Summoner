@@ -205,3 +205,4 @@ function parseLevel() {
 
 	return tiles;
 }
+new Player().levelstate.a.toString()
