@@ -101,3 +101,50 @@ const clicks = {
 		clickables.splice(0, 0);
 	}
 }
+
+/**
+ * Converts an object to a class instance. If it's not from a class it just returns the object.
+ * @param {object} obj The object to check.
+ * @returns {object} The class instance or the object.
+ */
+function convertToClass(obj) {
+	/** @type {{ [x: string]: string[] }} */
+	const checks = {
+		Player: ['levels', 'levelstate', 'resets', 'unlimited'],
+		Level: ['data', 'difficulty', 'stars', 'name', 'id'],
+	}
+
+	let type = null;
+	// checking: the class being checked right now
+	// cl:       the list of checks to do for this class
+	// prop:     the property that is being checked for right now
+	for (const checking in checks) { // check a single array of properties
+		const cl = checks[checking];
+		for (const prop of cl) {
+			if (!Object.hasOwnProperty.call(obj, prop)) break;
+			//  prop is the last element in cl
+			if (prop == cl[cl.length - 1]) type = checking; // we got through
+		}
+		if (type != null) break; // get out of this loop if we already got the type
+	}
+
+	let build; // the class instance being built
+	switch (type) { // no way to do this with a different way
+		case 'Player':
+			build = new Player();
+			break;
+
+		case 'Level':
+			build = new Level();
+			break;
+	
+		default:
+			return obj; // return the object if its not a class instance, if the object gets past this it has to be a class instance
+	}
+
+	for (const p in obj) {
+		build[p] = obj[p];
+	}
+
+	return build;
+}

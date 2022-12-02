@@ -2,6 +2,12 @@
 	the main code of the game, primarily drawing to the canvas
 */
 
+/**
+ * @type {Player}
+ * The save data.
+ */
+let game = new Player();
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -205,4 +211,3 @@ function parseLevel() {
 
 	return tiles;
 }
-new Player().levelstate.a.toString()
