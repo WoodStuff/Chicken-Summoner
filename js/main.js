@@ -23,9 +23,7 @@ let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and ri
 function setup() {
 	tick(); // so the game won't randomly be bigger for a frame
 	setInterval(tick, 100/6);
-
-
-
+	load();
 	init();
 }
 
@@ -49,6 +47,9 @@ function tick() {
 
 	timerfull = timerfull + 1/60;
 	timer = Math.floor(timerfull*100)/100;
+
+	if (state.tab == 'leveleditor' && !state.playing) editor.style.display = 'block';
+	else editor.style.display = 'none';
 }
 
 const mouse = {
@@ -139,6 +140,7 @@ const images = {
 
 /**
  * Current menu state.
+ * Starts at `playing: false`, `tab: 'menu'`, `subtab: 'main'`.
  */
 const state = {
 	playing: false,
@@ -169,11 +171,12 @@ function keyDownHandler(event) {
 		state.playing = true;
 	}
 	else if (event.keyCode == 82) resetPending = true; // r
-	else if (event.keyCode == 27) state.playing = false; // esc
-	else if (event.keyCode == 76) { // l
-		const editor = document.getElementById('leveleditor');
-		if (editor.style.display == 'block') editor.style.display = 'none';
-		else editor.style.display = 'block';
+	else if (event.keyCode == 27) { // esc
+		if (!state.playing) {
+			state.tab = 'menu';
+			state.subtab = 'main';
+		}
+		state.playing = false;
 	}
 }
 

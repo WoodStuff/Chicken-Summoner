@@ -96,6 +96,6 @@ function loadLevel() {
 		xScroll: true,
 		yScroll: true,
 	});
-	editor.style.display = 'none';
+	state.playing = true;
 	resetPending = true;
 }

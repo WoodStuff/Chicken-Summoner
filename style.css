@@ -22,7 +22,7 @@ canvas#game {
 	src: url('stormtiles.ttf') format('truetype');
 }
 
-div#leveleditor {
+div#leveleditor, div#stats {
 	width: 100vw;
 	height: 100vh;
 	background-color: #dddddd;
