@@ -74,7 +74,7 @@ function getWidth(level) {
 }
 
 const clicks = {
-	add(name, x, y, width, height, func, cursor = true) {
+	add(name, x, y, width, height, func, clickToClear = false, cursor = true) {
 		if (this.get(name)) return false;
 		name ||= clickables.length;
 		clickables.push({
@@ -84,6 +84,7 @@ const clicks = {
 			height: height,
 			name: name,
 			click: func,
+			clickToClear: clickToClear,
 			cursor: cursor,
 		})
 		return true;
@@ -98,7 +99,7 @@ const clicks = {
 		return clickables.find(c => c.name == name);
 	},
 	clear() {
-		clickables.splice(0, 0);
+		clickables.splice(0, clickables.length - 1);
 	}
 }
 

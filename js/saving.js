@@ -3,6 +3,7 @@ function hardReset(save = 'chickenSummonerSave') {
 	const n2 = Math.floor(Math.random() * ((20 + 1) - 10)) + 10;
 	if (prompt(`Are you sure you want to reset your progress? There is no going back!\nTo confirm, type the result of ${n1}+${n2}.`) == n1 + n2) {
 		localStorage.removeItem(save);
+		location.reload();
 	}
 	else alert('Hard reset failed.')
 }
@@ -14,18 +15,20 @@ function save(save = 'chickenSummonerSave') {
 
 function load(save = 'chickenSummonerSave') {
 	game = JSON.parse(localStorage.getItem(save));
+	if (game == null) return console.log('First time playing game');
 
 	// 1. flatten the object
 	function flatten(data, c) {
 		var result = {};
 		for (var i in data) {
-			console.log(result);
 			if (typeof data[i] == 'object' && !data[i].array) Object.assign(result, flatten(data[i], c + '.' + i));
 			else result[(c + '.' + i).replace(/^\./, "")] = data[i];
 		}
+		if (data.length == 0) result[c] = [];
+		else if (Object.keys(data) == undefined || Object.keys(data).length == 0) result[c] = {};
 		return result;
 	}
-	game = flatten(game, '');
+	game = flatten(game, 'object');
 
 	// 2. replace everything that should be a class instance with a class instance
 	for (const value in game) game[value] = convertToClass(game[value]);
@@ -42,6 +45,7 @@ function load(save = 'chickenSummonerSave') {
 		return result;
 	}
 	game = unflatten(game);
+	game = game.object;
 	game = convertToClass(game);
 	
 	// class instances are back!! yay :D

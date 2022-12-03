@@ -24,7 +24,7 @@ function init() {
 		ctx.drawImage(images.statistics_bg,      xtopixel(0.0625), ytopixel(0.3 + 2 * spacing), xtopixel(size) / (93/624), xtopixel(size));
 		ctx.drawImage(images.missions_bg,        xtopixel(0.0625), ytopixel(0.3 + 3 * spacing), xtopixel(size) / (93/541), xtopixel(size));
 		ctx.drawImage(images.options_bg,         xtopixel(0.0625), ytopixel(0.3 + 4 * spacing), xtopixel(size) / (93/511), xtopixel(size));
-		clicks.add('levels',      0.0625, 0.3 + 0 * spacing, size / (93/394), size * 2, () => { state.playing = true });
+		clicks.add('levels',      0.0625, 0.3 + 0 * spacing, size / (93/394), size * 2, () => { state.playing = true }, true);
 		clicks.add('leveleditor', 0.0625, 0.3 + 1 * spacing, size / (93/747), size * 2, () => {});
 		clicks.add('statistics',  0.0625, 0.3 + 2 * spacing, size / (93/624), size * 2, () => {});
 		clicks.add('missions',    0.0625, 0.3 + 3 * spacing, size / (93/541), size * 2, () => {});

@@ -23,6 +23,9 @@ let l, r, jump, resetPending, nextLevelPending; // abbreviations for left and ri
 function setup() {
 	tick(); // so the game won't randomly be bigger for a frame
 	setInterval(tick, 100/6);
+
+	
+
 	init();
 }
 
@@ -79,6 +82,7 @@ function mouseclick(e) {
 	if (hovered == '') return false;
 	console.log(`Clicked button: ${hovered}`);
 	clicks.get(hovered).click();
+	if (clicks.get(hovered).clickToClear) clicks.clear();
 }
 
 const player = {
@@ -150,6 +154,7 @@ const state = {
  * height: number,
  * name: string,
  * click: Function,
+ * clickToClear: boolean,
  * cursor: boolean
  * }[]}
  */
@@ -211,3 +216,7 @@ function parseLevel() {
 
 	return tiles;
 }
+
+const autoSave = setInterval(() => {
+	if (/* autosave setting checker */ true) save();
+}, 15_000);
