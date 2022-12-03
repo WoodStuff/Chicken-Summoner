@@ -104,6 +104,23 @@ const clicks = {
 }
 
 /**
+ * Gets the color of a difficulty.
+ * @param {Difficulty} diff The difficulty to get color of.
+ * @returns {string} The color of the difficulty. Includes the #.
+ */
+function getDiffColor(diff) {
+	return {
+		basic: '#3C78D8',
+		easy: '#6AA84F',
+		medium: '#F1C232',
+		hard: '#E69138',
+		extreme: '#CC0000',
+		insane: '#A64D79',
+		unrated: '#FFFFFF',
+	}[diff];
+}
+
+/**
  * Converts an object to a class instance. If it's not from a class it just returns the object.
  * @param {object} obj The object to check.
  * @returns {object} The class instance or the object.

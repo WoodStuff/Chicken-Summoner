@@ -65,8 +65,8 @@ class Player {
 	 * @returns {'created' | 'saved' | undefined } The type of the level.
 	 */
 	levelType(id) {
-		if (this.levels.created.find(l => l.name == name)) return 'created';
-		if (this.levels.saved.find(l => l.name == name)) return 'saved';
+		if (this.levels.created.find(l => l.id == id)) return 'created';
+		if (this.levels.saved.find(l => l.id == id)) return 'saved';
 	}
 
 	/**
@@ -97,5 +97,16 @@ class Player {
 		}
 		lvl.id = proposedID;
 		this.levels[created ? 'created' : 'saved'].push(lvl);
+	}
+
+	/**
+	 * Gets the total amount of a stat.
+	 * @param {'deaths' | 'time' | 'jumps'} stat The stat to get.
+	 * @returns {number} The total amount of deaths taken, playtime in levels and number of total jumps.
+	 */
+	getTotalStat(stat) {
+		let count = 0;
+		for (const state in this.levelstate) count += this.levelstate[state][stat];
+		return count;
 	}
 }

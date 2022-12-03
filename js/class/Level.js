@@ -6,6 +6,9 @@
  * @type { 'basic' | 'easy' | 'medium' | 'hard' | 'extreme' | 'insane' | 'unrated' }
  */
 
+/**
+ * A level.
+ */
 class Level {
 	constructor(name, data) {
 		/**

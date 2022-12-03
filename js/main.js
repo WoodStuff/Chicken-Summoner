@@ -24,7 +24,7 @@ function setup() {
 	tick(); // so the game won't randomly be bigger for a frame
 	setInterval(tick, 100/6);
 
-	
+
 
 	init();
 }
@@ -162,21 +162,15 @@ const clickables = [];
 let hovered = '';
 
 function keyDownHandler(event) {
-	if (event.keyCode == 39 || event.keyCode == 68) {
-		r = true;
-	}
-	else if (event.keyCode == 37 || event.keyCode == 65) {
-		l = true;
-	}
-	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) {
+		 if (event.keyCode == 39 || event.keyCode == 68) r = true; // → d
+	else if (event.keyCode == 37 || event.keyCode == 65) l = true; // ← a
+	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) { // space ↑ w
 		jump = true;
 		state.playing = true;
 	}
-	else if (event.keyCode == 82) {
-		resetPending = true;
-	}
-
-	else if (event.keyCode == 76) {
+	else if (event.keyCode == 82) resetPending = true; // r
+	else if (event.keyCode == 27) state.playing = false; // esc
+	else if (event.keyCode == 76) { // l
 		const editor = document.getElementById('leveleditor');
 		if (editor.style.display == 'block') editor.style.display = 'none';
 		else editor.style.display = 'block';
@@ -184,12 +178,8 @@ function keyDownHandler(event) {
 }
 
 function keyUpHandler(event) {
-	if (event.keyCode == 39 || event.keyCode == 68) {
-		r = false;
-	}
-	else if (event.keyCode == 37 || event.keyCode == 65) {
-		l = false;
-	}
+		 if (event.keyCode == 39 || event.keyCode == 68) r = false; // → d
+	else if (event.keyCode == 37 || event.keyCode == 65) l = false; // ← a
 }
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
