@@ -50,6 +50,8 @@ function tick() {
 
 	if (state.tab == 'leveleditor' && !state.playing) editor.style.display = 'block';
 	else editor.style.display = 'none';
+	if (state.tab == 'stats' && !state.playing) document.getElementById('stats').style.display = 'block';
+	else document.getElementById('stats').style.display = 'none';
 }
 
 const mouse = {
@@ -168,9 +170,11 @@ function keyDownHandler(event) {
 	else if (event.keyCode == 37 || event.keyCode == 65) l = true; // ← a
 	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) { // space ↑ w
 		jump = true;
-		state.playing = true;
 	}
-	else if (event.keyCode == 82) resetPending = true; // r
+	else if (event.keyCode == 82) { // r
+		if (event.shiftKey) player.checkpoint = 0;
+		resetPending = true;
+	}
 	else if (event.keyCode == 27) { // esc
 		if (!state.playing) {
 			state.tab = 'menu';

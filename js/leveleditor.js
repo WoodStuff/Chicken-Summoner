@@ -97,5 +97,6 @@ function loadLevel() {
 		yScroll: true,
 	});
 	state.playing = true;
+	player.checkpoint = 0;
 	resetPending = true;
 }

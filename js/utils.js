@@ -63,7 +63,7 @@ function hasHitbox(tile) {
 	return ['block', 'spike', 'exit', 'checkpoint'].includes(tile);
 }
 function hitboxNoSolid(tile) {
-	return ['checkpoint'].includes(tile);
+	return ['exit', 'checkpoint'].includes(tile);
 }
 function getWidth(level) {
 	let length = 0;
@@ -110,12 +110,12 @@ const clicks = {
  */
 function getDiffColor(diff) {
 	return {
-		basic: '#3C78D8',
-		easy: '#6AA84F',
-		medium: '#F1C232',
-		hard: '#E69138',
+		basic:   '#3C78D8',
+		easy:    '#6AA84F',
+		medium:  '#F1C232',
+		hard:    '#E69138',
 		extreme: '#CC0000',
-		insane: '#A64D79',
+		insane:  '#A64D79',
 		unrated: '#FFFFFF',
 	}[diff];
 }

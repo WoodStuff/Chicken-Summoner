@@ -14,6 +14,60 @@
 		<canvas id="game" width="1600" height="900">unfortunately your browser must support canvas element else this will not work (the current situation)</canvas>
 		<div id="stats" style="display:none;">
 			<h1>Stats</h1>
+			<div id="stats-container">
+				<div class="stat-container"> <!-- left side -->
+					<p>Total <abbr style="cursor:help;" title="not counting resets">deaths</abbr>: <span class="stat" id="stat-deaths">0</span></p>
+					<p>Levels completed: <span class="stat" id="stat-wins">0</span></p>
+					<p>Times jumped: <span class="stat" id="stat-jumps">0</span></p>
+					<p>Total playtime: <span class="stat" id="stat-playtime">0</span></p>
+					<p>Unlimited Mode PB: <span class="stat" id="stat-unlimited">0</span></p>
+					<p>Levels with difficulty
+						<select name="diffwins" id="diffwins"
+							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value)" style="color: #A64D79;">
+							<option style="color: #3C78D8;" value="basic">Basic</option>
+							<option style="color: #6AA84F;" value="easy">Easy</option>
+							<option style="color: #F1C232;" value="medium">Medium</option>
+							<option style="color: #E69138;" value="hard">Hard</option>
+							<option style="color: #CC0000;" value="extreme">Extreme</option>
+							<option style="color: #A64D79;" value="insane" selected>Insane</option>
+							<option style="color: #000;"    value="unrated">Unrated</option>
+						</select>
+						complete: <span class="stat" id="stat-diffwins">0</span>
+					</p>
+					<p>Levels with
+						<select name="starwins-1" id="starwins-1">
+							<option value="atleast">at least</option>
+							<option value="exactly" selected>exactly</option>
+							<option value="exactly">at most</option>
+						</select>
+						<select name="starwins-2" id="starwins-2" style="color: #e0b122;">
+							<option 		 value="0">0 stars</option>
+							<option 		 value="1">1 ★</option>
+							<option selected value="2">2 ★★</option>
+							<option 		 value="3">3 ★★★</option>
+							<option 		 value="4">4 ★★★★</option>
+							<option 		 value="5">5 ★★★★★</option>
+						</select> complete: <span class="stat" id="stat-starwins">0</span>
+					</p>
+					<p>Challenges complete: <span class="stat" id="stat-challenges">0</span></p>
+					<p>Challenges with difficulty
+						<select name="diffchalls" id="diffchalls"
+							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value)" style="color: #CC0000;">
+							<option style="color: #3C78D8;" value="basic">Basic</option>
+							<option style="color: #6AA84F;" value="easy">Easy</option>
+							<option style="color: #F1C232;" value="medium">Normal</option>
+							<option style="color: #E69138;" value="hard">Hard</option>
+							<option style="color: #CC0000;" value="extreme" selected>Extreme</option>
+							<option style="color: #000;"    value="unrated">Unrated</option>
+						</select>
+						complete: <span class="stat" id="diffchalls">0</span>
+					</p>
+				</div>
+				<div class="stat-container"> <!-- right side -->
+					<h2>Fun facts</h2>
+					<p>Your average attempt lasts <span class="stat" id="stat-averageattempt">0</span> seconds.</p>
+				</div>
+			</div>
 		</div>
 		<div id="leveleditor" style="display:none;">
 			<h1>Level Editor</h1>

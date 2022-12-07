@@ -24,7 +24,7 @@ canvas#game {
 
 div#leveleditor, div#stats {
 	width: 100vw;
-	height: 100vh;
+	height: 100vh; 
 	background-color: #dddddd;
 	z-index: 1;
 	position: absolute;
@@ -32,12 +32,34 @@ div#leveleditor, div#stats {
 	overflow: auto;
 }
 h1 {
-	font-size: 4em;
+	font-size: 6em;
+	margin: 0;
+}
+h2 {
+	font-size: 3em;
 	margin: 0;
 }
 textarea#levelcode {
 	white-space: pre;
 	overflow-wrap: normal;
+}
+
+div#stats h1, div#stats h2 {
+	text-align: center;
+}
+
+div#stats-container {
+	display: flex;
+	justify-content: space-evenly;
+}
+div#stats p {
+	font-size: 1.5em;
+}
+div#stats select {
+	font-size: 0.75em;
+}
+span.stat {
+	font-weight: bold;
 }
 
 .logo {

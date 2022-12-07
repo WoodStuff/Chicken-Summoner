@@ -12,9 +12,9 @@ class Player {
 			created: [],
 		}
 		/**
-		 * The state of the player's saved levels.
+		 * The state of the player's saved levels. Deaths include resets. Time is in seconds.
 		 * @type {{ [x: string]: {
-		 * 	completed: number,
+		 * 	wins: number,
 		 * 	time: number,
 		 * 	deaths: number,
 		 * 	jumps: number,
@@ -35,10 +35,10 @@ class Player {
 		 */
 		this.challenges = [];
 		/**
-		 * Reset count.
+		 * Attempt count. This is incremented each time a reset happens or a level is started.
 		 * @type {number}
 		 */
-		this.resets = 0;
+		this.attempts = 0;
 		/**
 		 * Info regarding the progress of Unlimited Mode.
 		 */
@@ -101,12 +101,12 @@ class Player {
 
 	/**
 	 * Gets the total amount of a stat.
-	 * @param {'deaths' | 'time' | 'jumps'} stat The stat to get.
-	 * @returns {number} The total amount of deaths taken, playtime in levels and number of total jumps.
+	 * @param {'deaths' | 'time' | 'jumps' | 'wins'} stat The stat to get.
+	 * @returns {number} The total amount of deaths taken, playtime in levels, number of total jumps or level completions.
 	 */
 	getTotalStat(stat) {
 		let count = 0;
-		for (const state in this.levelstate) count += this.levelstate[state][stat];
+		for (const state in this.levelstate) count += this.levelstate[stat == 'wins' ? state : `total_${stat}`][stat];
 		return count;
 	}
 }
