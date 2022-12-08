@@ -15,7 +15,10 @@ function save(save = 'chickenSummonerSave') {
 
 function load(save = 'chickenSummonerSave') {
 	game = JSON.parse(localStorage.getItem(save));
-	if (game == null) return console.log('First time playing game');
+	if (game == null) {
+		game = new Player();
+		return console.log('First time playing game');
+	}
 
 	// 1. flatten the object
 	function flatten(data, c) {

@@ -23,7 +23,7 @@
 					<p>Unlimited Mode PB: <span class="stat" id="stat-unlimited">0</span></p>
 					<p>Levels with difficulty
 						<select name="diffwins" id="diffwins"
-							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value)" style="color: #A64D79;">
+							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value); updateStats();" style="color: #A64D79;">
 							<option style="color: #3C78D8;" value="basic">Basic</option>
 							<option style="color: #6AA84F;" value="easy">Easy</option>
 							<option style="color: #F1C232;" value="medium">Medium</option>
@@ -35,12 +35,12 @@
 						complete: <span class="stat" id="stat-diffwins">0</span>
 					</p>
 					<p>Levels with
-						<select name="starwins-1" id="starwins-1">
+						<select name="starwins-1" id="starwins-1" onchange="updateStats();">
 							<option value="atleast">at least</option>
 							<option value="exactly" selected>exactly</option>
 							<option value="exactly">at most</option>
 						</select>
-						<select name="starwins-2" id="starwins-2" style="color: #e0b122;">
+						<select name="starwins-2" id="starwins-2" style="color: #e0b122;" onchange="updateStats();">
 							<option 		 value="0">0 stars</option>
 							<option 		 value="1">1 ★</option>
 							<option selected value="2">2 ★★</option>
@@ -52,7 +52,7 @@
 					<p>Challenges complete: <span class="stat" id="stat-challenges">0</span></p>
 					<p>Challenges with difficulty
 						<select name="diffchalls" id="diffchalls"
-							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value)" style="color: #CC0000;">
+							onchange="this.style.color = this.value == 'unrated' ? 'black' : getDiffColor(this.value); updateStats();" style="color: #CC0000;">
 							<option style="color: #3C78D8;" value="basic">Basic</option>
 							<option style="color: #6AA84F;" value="easy">Easy</option>
 							<option style="color: #F1C232;" value="medium">Normal</option>
@@ -111,5 +111,6 @@
 		<script src="js/levels.js" defer></script>
 		<script src="js/leveleditor.js" defer></script>
 		<script src="js/canvas.js" defer></script>
+		<script src="js/menu.js" defer></script>
 	</body>
 </html>

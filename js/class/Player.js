@@ -106,7 +106,24 @@ class Player {
 	 */
 	getTotalStat(stat) {
 		let count = 0;
-		for (const state in this.levelstate) count += this.levelstate[stat == 'wins' ? state : `total_${stat}`][stat];
+		for (const state in this.levelstate) {
+			let total = this.levelstate[state][stat == 'wins' ? 'wins' : `total_${stat}`];
+			if (!isNaN(total)) count += total;
+			else count += this.levelstate[state][stat];
+		}
 		return count;
+	}
+
+	/**
+	 * Get the completed levels.
+	 */
+	completedLevels() {
+		return this.allLevels().filter(x => this.levelstate[x.id].wins > 0);
+	}
+	/**
+	 * Get the amount of completed levels.
+	 */
+	completed() {
+		return this.completedLevels().length;
 	}
 }
