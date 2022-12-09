@@ -83,7 +83,7 @@ function init() {
 						});
 					}
 					let texture = images[lv[0].tile];
-					if (lv[0].tile == 'checkpoint' && player.checkpoint == checkpoints.length - 1) texture = images.checkpointactive;
+					if (lv[0].tile == 'checkpoint' && player.checkpoint == checkpoints.length) texture = images.checkpointactive;
 					lv.shift();
 
 					if (texture == undefined) continue;

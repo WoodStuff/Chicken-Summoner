@@ -62,4 +62,12 @@ class Level {
 		this.data.forEach(row => rWidth = Math.max(rWidth, row.length));
 		return [rWidth, this.data.length];
 	}
+
+	/**
+	 * Gets the amount of stars the player would have gotten if they got a `ms` time, in milliseconds, on the level.
+	 * @param {number} ms The amount of milliseconds the level was beaten in.
+	 */
+	getStarRating(ms) {
+
+	}
 }

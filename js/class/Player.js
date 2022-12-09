@@ -116,9 +116,13 @@ class Player {
 
 	/**
 	 * Get the completed levels.
+	 * @param {'levels' | 'states'} type The level type to return.
 	 */
-	completedLevels() {
-		return this.allLevels().filter(x => this.levelstate[x.id].wins > 0);
+	completedLevels(type = 'levels') {
+		if (type == 'levels') return this.allLevels().filter(x => this.levelstate[x.id].wins > 0);
+		let levels = this.levelstate;
+		for (const state in levels) if (levels[state].wins < 1) delete levels[state];
+		return levels;
 	}
 	/**
 	 * Get the amount of completed levels.
