@@ -39,6 +39,9 @@ h2 {
 	font-size: 3em;
 	margin: 0;
 }
+abbr {
+	cursor: help;
+}
 textarea#levelcode {
 	white-space: pre;
 	overflow-wrap: normal;
@@ -82,6 +85,10 @@ div#options a.reset-option:active {
 div#options input {
 	font-size: 0.75em;
 	width: 100px;
+}
+button#option-save-button {
+	padding: 3px 10px;
+	font-size: 1.5em;
 }
 div#option-save-div {
 	margin: auto;

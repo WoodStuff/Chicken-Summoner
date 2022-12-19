@@ -16,7 +16,7 @@
 			<h1>Stats</h1>
 			<div id="stats-container">
 				<div class="stat-container"> <!-- left side -->
-					<p>Total <abbr style="cursor:help;" title="not counting resets">deaths</abbr>: <span class="stat" id="stat-deaths">0</span></p>
+					<p>Total <abbr title="not counting resets">deaths</abbr>: <span class="stat" id="stat-deaths">0</span></p>
 					<p>Levels completed: <span class="stat" id="stat-wins">0</span></p>
 					<p>Times jumped: <span class="stat" id="stat-jumps">0</span></p>
 					<p>Total playtime: <span class="stat" id="stat-playtime">0</span></p>
@@ -76,14 +76,20 @@
 					<a class="reset-option" onclick="o('gravity').value = 50;">X</a>
 					<span>Gravity: <input type="number" class="option" id="option-gravity"></span><br>
 					<a class="reset-option" onclick="o('jump').value = 20;">X</a>
-					<span>Jump height: <input type="number" class="option" id="option-jump"></span>
+					<span><abbr title="This is not linear
+For example, doubling the jump height from 20 to 40 tenfolds the actual jump height
+Unfortunately, there is nothing I can do about this">Jump height:</abbr>
+						<input type="number" class="option" id="option-jump"></span>
 				</div>
 				<div class="stat-container"> <!-- right side -->
 					<a class="reset-option" onclick="o('speed').value = 50;">X</a>
-					<span>Speed: <input type="number" class="option" id="option-speed"></span>
+					<span>Speed: <input type="number" class="option" id="option-speed"></span><br>
+					<a class="reset-option" onclick="o('spring').value = 50;">X</a>
+					<span><abbr title="Uses the same values as jump height">Spring power</abbr>: <input type="number" class="option" id="option-spring"></span>
 				</div>
 			</div>
-			<div id="option-save-div"><button onclick="saveOptions(); state.tab = 'menu';">Save</button></div>
+			<br>
+			<div id="option-save-div"><button id="option-save-button" onclick="saveOptions(); state.tab = 'menu';">Save</button></div>
 		</div>
 		<div id="leveleditor" style="display:none;">
 			<h1>Level Editor</h1>

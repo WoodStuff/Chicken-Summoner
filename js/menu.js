@@ -32,9 +32,11 @@ function inputOptions() {
 	o('gravity').value = player.gravity;
 	o('jump').value = player.jumpHeight;
 	o('speed').value = player.speed;
+	o('spring').value = player.springPower;
 }
 function saveOptions() {
 	player.gravity = o('gravity').value;
 	player.jumpHeight = o('jump').value;
 	player.speed = o('speed').value;
+	player.springPower = o('spring').value;
 }

@@ -75,7 +75,6 @@ function init() {
 		for (let y = 1; y < LEVELS[player.level].tiles.length + 1; y++) {
 			for (let x = 1; x < getWidth(LEVELS[player.level].tiles) + 1; x++) {
 				if (lv[0].x == x && lv[0].y == y) {
-					if (level[0].tile == 'spawn') checkpoints[0] = [spawnX, spawnY];
 					if (level[0].tile == 'checkpoint') {
 						checkpoints.push({
 							x: x,

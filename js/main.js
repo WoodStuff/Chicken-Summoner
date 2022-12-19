@@ -275,7 +275,7 @@ function tick() {
 				return [true];
 			}
 			if (prop.tile == 'spring' && dir == 'y') {
-				player.vy = -30;
+				player.vy = -player.springPower;
 				return [false, true];
 			}
 			else return [false, false];
@@ -329,6 +329,7 @@ const player = {
 	canJump: false,
 	jumpHeight: 20,
 	gravity: 50,
+	springPower: 30,
 }
 
 const tileSize = 0.05;
