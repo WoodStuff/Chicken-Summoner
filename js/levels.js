@@ -7,7 +7,7 @@ const LEVELS = [
             'X        X             X',
             'X    XX  X  XX        AX',
             'XX   XX  X        XX  XX',
-            'XXX P                  X',
+            'XXX P          S       X',
             'XXXXXXXXXXXXXXXXXX     X',
             'X                      X',
             'X                    XXX',
@@ -77,4 +77,5 @@ const TILES = {
 	'E': 'exit',
 	'A': 'spike',
 	'C': 'checkpoint',
+	'S': 'spring',
 }

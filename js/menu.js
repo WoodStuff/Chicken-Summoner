@@ -17,5 +17,12 @@ function updateStats() {
 
 	s('diffwins').innerHTML = game.completedLevels().filter(x => x.difficulty == e('diffwins'));
 
-	s('starwins').innerHTML = game.completedLevels().filter()
+	/*switch (e('starwins-1').value) {
+		case 'exactly':
+			s('starwins').innerHTML = Object.values(game.completedLevels('states')).filter(x => )
+			break;
+	
+		default:
+			break;
+	}*/
 }

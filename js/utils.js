@@ -60,7 +60,7 @@ const ytoperc  = v => v / height;
 const xtopixel = v => v * width;
 const ytopixel = v => v * height;
 function hasHitbox(tile) {
-	return ['block', 'spike', 'exit', 'checkpoint'].includes(tile);
+	return ['block', 'spike', 'exit', 'checkpoint', 'spring'].includes(tile);
 }
 function hitboxNoSolid(tile) {
 	return ['exit', 'checkpoint'].includes(tile);

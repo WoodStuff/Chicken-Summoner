@@ -66,8 +66,15 @@ class Level {
 	/**
 	 * Gets the amount of stars the player would have gotten if they got a `ms` time, in milliseconds, on the level.
 	 * @param {number} ms The amount of milliseconds the level was beaten in.
+	 * @returns {number} The amount of stars.
 	 */
 	getStarRating(ms) {
-
+		let s = 0;
+		for (const star of this.stars) {
+			if (star == Infinity) continue;
+			if (ms > star) return s;
+			s++;
+		}
+		return s;
 	}
 }

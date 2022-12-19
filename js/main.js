@@ -190,15 +190,15 @@ function tick() {
 
 			let collide = colliding();
 			if (collide) {
-				let sp = specialCollide(collide);
-				if (!sp) {
+				let sp = specialCollide(collide, 'x');
+				if (!sp[0]) {
 					if (dir == 'right') {
 						player.x = collide.left + 0.25;
-						player.vx = 0;
+						if (!sp[1]) player.vx = 0;
 					}
 					if (dir == 'left') {
 						player.x = collide.right + 1;
-						player.vx = 0;
+						if (!sp[1]) player.vx = 0;
 					}
 				}
 			}
@@ -214,16 +214,18 @@ function tick() {
 
 			collide = colliding();
 			if (collide) {
-				sp = specialCollide(collide);
-				if (!sp) {
+				sp = specialCollide(collide, 'y');
+				if (!sp[0]) {
 					if (dir == 'down') {
 						player.y = collide.top + 0.25;
-						player.vy = 0;
-						player.canJump = true;
+						if (!sp[1]) {
+							player.vy = 0;
+							player.canJump = true;
+						}
 					}
 					if (dir == 'up') {
 						player.y = collide.bottom + 1;
-						player.vy = 0;
+						if (!sp[1]) player.vy = 0;
 					}
 				}
 			}
@@ -254,21 +256,27 @@ function tick() {
 			player.vx = 0;
 			player.vy = 0;
 		}
-		function specialCollide(prop) { // returns true if no hitbox
+		function specialCollide(prop, dir) { // 0 returns true if no hitbox, 1 returns true if shouldnt stop velocity
 			if (prop.tile == 'spike') {
 				reset();
-				return true;
+				return [true];
 			}
 			if (prop.tile == 'exit' && player.level != LEVELS.length - 1) {
 				player.checkpoint = 0;
 				player.level++;
 				nextLevelPending = true;
 				timerfull = 0;
+				return [true];
 			}
 			if (prop.tile == 'checkpoint') {
 				player.checkpoint = prop.checkpoint;
-				return true;
+				return [true];
 			}
+			if (prop.tile == 'spring' && dir == 'y') {
+				player.vy = -30;
+				return [false, true];
+			}
+			else return [false, false];
 		}
 	}
 }
@@ -357,6 +365,7 @@ const images = {
 	spike: newImage(`media/tiles/spike.png`),
 	checkpoint: newImage(`media/tiles/checkpoint.png`),
 	checkpointactive: newImage(`media/tiles/checkpointactive.png`),
+	spring: newImage(`media/tiles/spring.png`)
 }
 
 /**
