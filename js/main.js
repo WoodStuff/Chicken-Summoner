@@ -143,7 +143,7 @@ function tick() {
 		if (jump) {
 			jump = false;
 			if (player.canJump) {
-				player.vy = -20;
+				player.vy = -player.jumpHeight;
 				player.canJump = false;
 			}
 		}
@@ -234,7 +234,7 @@ function tick() {
 			}
 		}
 		function gravitate() {
-			player.vy += 0.5;
+			player.vy += player.gravity;
 		}
 		function colliding() {
 			let sfl = undefined; // save for later
@@ -325,6 +325,8 @@ const player = {
 	checkpoint: 0,
 	spawned: false,
 	canJump: false,
+	jumpHeight: 20,
+	gravity: 0.5,
 }
 
 const tileSize = 0.05;
