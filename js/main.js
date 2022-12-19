@@ -415,6 +415,11 @@ function keyDownHandler(event) {
 		}
 		state.playing = false;
 	}
+	else if (event.keyCode == 84 && event.shiftKey) { // shift+t
+		player.level = 0;
+		player.checkpoint = 0;
+		resetPending = true;
+	}
 }
 
 function keyUpHandler(event) {
