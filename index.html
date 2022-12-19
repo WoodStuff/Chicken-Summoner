@@ -69,6 +69,22 @@
 				</div>
 			</div>
 		</div>
+		<div id="options" style="display:none;">
+			<h1>Options</h1>
+			<div id="options-container">
+				<div class="option-container"> <!-- left side -->
+					<a class="reset-option" onclick="o('gravity').value = 50;">X</a>
+					<span>Gravity: <input type="number" class="option" id="option-gravity"></span><br>
+					<a class="reset-option" onclick="o('jump').value = 20;">X</a>
+					<span>Jump height: <input type="number" class="option" id="option-jump"></span>
+				</div>
+				<div class="stat-container"> <!-- right side -->
+					<a class="reset-option" onclick="o('speed').value = 50;">X</a>
+					<span>Speed: <input type="number" class="option" id="option-speed"></span>
+				</div>
+			</div>
+			<div id="option-save-div"><button onclick="saveOptions(); state.tab = 'menu';">Save</button></div>
+		</div>
 		<div id="leveleditor" style="display:none;">
 			<h1>Level Editor</h1>
 			<p>Note: It is recommended that you enclose your levels! Otherwise, players will be able to go out of bounds.</p>

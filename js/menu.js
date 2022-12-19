@@ -1,7 +1,8 @@
-function updateStats() {
-	const e = a => document.getElementById(a);
-	const s = a => e(`stat-${a}`);
+const e = a => document.getElementById(a);
+const s = a => e(`stat-${a}`);
+const o = a => e(`option-${a}`);
 
+function updateStats() {
 	s('deaths').innerHTML = game.getTotalStat('deaths');
 	s('wins').innerHTML = game.completed();
 	s('jumps').innerHTML = game.getTotalStat('jumps');
@@ -25,4 +26,15 @@ function updateStats() {
 		default:
 			break;
 	}*/
+}
+
+function inputOptions() {
+	o('gravity').value = player.gravity;
+	o('jump').value = player.jumpHeight;
+	o('speed').value = player.speed;
+}
+function saveOptions() {
+	player.gravity = o('gravity').value;
+	player.jumpHeight = o('jump').value;
+	player.speed = o('speed').value;
 }

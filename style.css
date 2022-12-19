@@ -22,7 +22,7 @@ canvas#game {
 	src: url('stormtiles.ttf') format('truetype');
 }
 
-div#leveleditor, div#stats {
+div#leveleditor, div#stats, div#options {
 	width: 100vw;
 	height: 100vh; 
 	background-color: #dddddd;
@@ -44,11 +44,11 @@ textarea#levelcode {
 	overflow-wrap: normal;
 }
 
-div#stats h1, div#stats h2 {
+div#stats h1, div#stats h2, div#options h1 {
 	text-align: center;
 }
 
-div#stats-container {
+div#stats-container, div#options-container {
 	display: flex;
 	justify-content: space-evenly;
 }
@@ -60,6 +60,32 @@ div#stats select {
 }
 span.stat {
 	font-weight: bold;
+}
+
+div#options span {
+	font-size: 2em;
+}
+div#options a.reset-option {
+	color: red;
+	font-size: 2em;
+	font-weight: bold;
+	position: absolute;
+	transform: translateX(-30px);
+	cursor: pointer;
+}
+div#options a.reset-option:hover {
+	color: #ff4444;
+}
+div#options a.reset-option:active {
+	color: #cc0000;
+}
+div#options input {
+	font-size: 0.75em;
+	width: 100px;
+}
+div#option-save-div {
+	margin: auto;
+	text-align: center;
 }
 
 .logo {

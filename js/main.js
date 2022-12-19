@@ -53,6 +53,8 @@ function tick() {
 	else editor.style.display = 'none';
 	if (state.tab == 'stats' && !state.playing) document.getElementById('stats').style.display = 'block';
 	else document.getElementById('stats').style.display = 'none';
+	if (state.tab == 'options' && !state.playing) document.getElementById('options').style.display = 'block';
+	else document.getElementById('options').style.display = 'none';
 
 	physics();
 
@@ -138,8 +140,8 @@ function tick() {
 		let friction = 0.99;
 		let velThreshold = 0.8;
 
-		if (l) player.vx -= player.speed;
-		if (r) player.vx += player.speed;
+		if (l) player.vx -= player.speed / 100;
+		if (r) player.vx += player.speed / 100;
 		if (jump) {
 			jump = false;
 			if (player.canJump) {
@@ -234,7 +236,7 @@ function tick() {
 			}
 		}
 		function gravitate() {
-			player.vy += player.gravity;
+			player.vy += player.gravity / 100;
 		}
 		function colliding() {
 			let sfl = undefined; // save for later
@@ -320,13 +322,13 @@ const player = {
 	y: 3,
 	vx: 0,
 	vy: 0,
-	speed: 0.5,
+	speed: 50,
 	level: 0,
 	checkpoint: 0,
 	spawned: false,
 	canJump: false,
 	jumpHeight: 20,
-	gravity: 0.5,
+	gravity: 50,
 }
 
 const tileSize = 0.05;
