@@ -322,14 +322,14 @@ const player = {
 	y: 3,
 	vx: 0,
 	vy: 0,
-	speed: 50,
+	speed: 60,
 	level: 0,
 	checkpoint: 0,
 	spawned: false,
 	canJump: false,
-	jumpHeight: 20,
-	gravity: 50,
-	springPower: 30,
+	jumpHeight: 25,
+	gravity: 80,
+	springPower: 35,
 }
 
 const tileSize = 0.05;

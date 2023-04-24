@@ -1,5 +1,5 @@
 const editor = document.getElementById('leveleditor');
-const levelcode = document.getElementById('levelcode');
+const levelcode = document.querySelector('textarea');
 function levelPreset(preset) {
 	switch (preset) {
 		case 0:
@@ -88,6 +88,10 @@ XXXXXXXXXXXXXXXXXXXXXXXX`
 }
 
 function loadLevel() {
+	let i = levelcode.value.length;
+	while (i--) {
+		if (TILES[levelcode.value[i]] == undefined && levelcode.value[i] != '\n') return alert('Level code contains invalid tiles!')
+	}
 	LEVELS.length = 0;
 	LEVELS.push({
 		level: 0,
