@@ -291,7 +291,6 @@ canvas.addEventListener('mousemove', mousepos);
 function mousepos(e) {
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
-	if (clickables.length == 0) return;
 
 	hovered = '';
 

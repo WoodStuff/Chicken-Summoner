@@ -99,7 +99,7 @@ const clicks = {
 		return clickables.find(c => c.name == name);
 	},
 	clear() {
-		clickables.splice(0, clickables.length - 1);
+		clickables.length = 0;
 	}
 }
 
