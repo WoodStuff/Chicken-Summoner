@@ -1,3 +1,13 @@
+const FEATURED = [];
+FEATURED.push(new Level())
+
+
+
+
+
+
+
+
 const LEVELS = [
 	{
 		level: 0,

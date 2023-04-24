@@ -143,7 +143,6 @@ function tick() {
 		if (l) player.vx -= player.speed / 100;
 		if (r) player.vx += player.speed / 100;
 		if (jump) {
-			jump = false;
 			if (player.canJump) {
 				player.vy = -player.jumpHeight;
 				player.canJump = false;
@@ -328,7 +327,7 @@ const player = {
 	canJump: false,
 	jumpHeight: 25,
 	gravity: 80,
-	springPower: 35,
+	springPower: 36,
 }
 
 const tileSize = 0.05;
@@ -400,9 +399,7 @@ let hovered = '';
 function keyDownHandler(event) {
 		 if (event.keyCode == 39 || event.keyCode == 68) r = true; // → d
 	else if (event.keyCode == 37 || event.keyCode == 65) l = true; // ← a
-	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) { // space ↑ w
-		jump = true;
-	}
+	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) jump = true; // space ↑ w
 	else if (event.keyCode == 82) { // r
 		if (event.shiftKey) player.checkpoint = 0;
 		resetPending = true;
@@ -424,6 +421,7 @@ function keyDownHandler(event) {
 function keyUpHandler(event) {
 		 if (event.keyCode == 39 || event.keyCode == 68) r = false; // → d
 	else if (event.keyCode == 37 || event.keyCode == 65) l = false; // ← a
+	else if (event.keyCode == 32 || event.keyCode == 38 || event.keyCode == 87) jump = false; // space ↑ w
 }
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
